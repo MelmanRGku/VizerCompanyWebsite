@@ -25,7 +25,7 @@ function getDBConnection()
     'secret' => 'O+SBFW0nkY1Z9sYez53x4uRo4d9ZAZcN9Ze2TA1M'
     ],
     'http'    => [
-        'verify' => "C:\wamp\www\IzerLabsTemplate\includes\awsSDK\ca-bundle.crt"
+        'verify' => $projectRoot .'includes/awsSDK/ca-bundle.crt'
     ]
     ]);
 
@@ -47,7 +47,7 @@ function getS3Connection()
     'secret' => 'O+SBFW0nkY1Z9sYez53x4uRo4d9ZAZcN9Ze2TA1M'
     ],
     'http'    => [
-        'verify' => "C:\wamp\www\IzerLabsTemplate\includes\awsSDK\ca-bundle.crt"
+        'verify' => $projectRoot .'includes/awsSDK/ca-bundle.crt'
     ]
 ]);
 
@@ -89,7 +89,7 @@ function addToRequestDB($item)
 
 	try {
     	$result = $dynamodb->putItem($params);
-    	print_r($params);
+    	// print_r($params);
 
 	} catch (DynamoDbException $e) {
     	echo "Unable to add item:\n";
