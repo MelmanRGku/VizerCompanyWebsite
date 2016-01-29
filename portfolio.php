@@ -68,7 +68,7 @@ $counter =  1;
             <li>
                 <div class="preview">
                       <?php
-                        echo '<img alt=" " src="images/portfolio/thumb/House'.$counter.'.jpg">';
+                        echo '<img alt=" " src="https://s3-us-west-2.amazonaws.com/izerlabshousestorage/'.$listing["HousePhotoID"]["S"].'">';
                       ?>                      
                     <div class="overlay">
                     </div>
@@ -87,7 +87,7 @@ $counter =  1;
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <?php
-                        echo '<img src="images/portfolio/full/House'.$counter.'.jpg" alt=" " width="100%" style="max-height:400px">';
+                        echo '<img alt=" " src="https://s3-us-west-2.amazonaws.com/izerlabshousestorage/'.$listing["HousePhotoID"]["S"].'"width="100%" style="max-height:400px">';
                         echo '<div class="desc">';
                         echo "<h5>".$listing["Address"]["S"]."</h5>";
                         echo "<small>".$listing["City"]["S"]."</small>";
@@ -111,7 +111,7 @@ $counter =  1;
 
 <?php
 
-include_once("/template/footer.php");
+include_once($projectRoot."/template/footer.php");
 ?>
 
 <script src="js/vendor/jquery-1.9.1.min.js"></script>

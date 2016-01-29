@@ -164,7 +164,7 @@ include_once($projectRoot."/template/header.php");
 <!--/Services-->
 <?php
 
-include_once("/template/footer.php");
+include_once($projectRoot."/template/footer.php");
 ?>
 
 <script src="js/vendor/jquery-1.9.1.min.js"></script>
