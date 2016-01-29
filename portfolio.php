@@ -58,6 +58,7 @@ $projectRoot = "./";
 include_once($projectRoot."/includes/functions.php");
 
 $allListings =  getAllListings();
+$counter =  1;
 ?>
 
 
@@ -90,33 +91,41 @@ $allListings =  getAllListings();
             foreach($allListings as $listing)
             {
             ?>
-
             <li>
                 <div class="preview">
-                    <img alt=" " src="images/portfolio/thumb/House1.jpg">
+                      <?php
+                        echo '<img alt=" " src="images/portfolio/thumb/House'.$counter.'.jpg">';
+                      ?>                      
                     <div class="overlay">
                     </div>
-                    <div class="links">
-                        <a href="" data-toggle="modal" data-target=".modal-1"><i class="fa fa-eye"></i></a>                                
-                    </div>
+                    <?php
+                        echo '<div class="links">';
+                        echo '<a href="" data-toggle="modal" data-target=".modal-'.$counter.'"><i class="fa fa-eye"></i></a>';
+                        echo "</div>";
+                    ?>    
                 </div>
-                <div class="desc">
-                    <h5>The Project Name</h5> 
-                </div>
-                <div class="modal fade modal-1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                  <?php
+                    echo '<div class="desc">';
+                    echo "<h5>".$listing["Address"]["S"]."</h5>";
+                    echo "</div>";
+                    echo '<div class="modal fade modal-'.$counter.'" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">'
+                  ?>                
                   <div class="modal-dialog">
                     <div class="modal-content">
-                      <img src="images/portfolio/full/House1.jpg" alt=" " width="100%" style="max-height:400px">
-                       <div class="desc">
-                    <h5>The Project Name</h5>
-                    <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit</small>
-                </div>
+                      <?php
+                        echo '<img src="images/portfolio/full/House'.$counter.'.jpg" alt=" " width="100%" style="max-height:400px">';
+                        echo '<div class="desc">';
+                        echo "<h5>".$listing["Address"]["S"]."</h5>";
+                        echo "<small>".$listing["City"]["S"]."</small>";
+                        echo "</div>";
+                      ?>
                     </div>
                   </div>
                 </div>                           
             </li>
             <!--/Item 1--> 
             <?php
+            $counter = $counter + 1;
             }
 
             ?>
