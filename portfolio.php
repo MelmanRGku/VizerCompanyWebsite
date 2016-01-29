@@ -1,3 +1,12 @@
+<?php
+
+$projectRoot = "./";
+include_once($projectRoot."/template/header.php");
+include_once($projectRoot."/includes/functions.php");
+
+$allListings =  getAllListings();
+$counter =  1;
+?>
     <!--Header-->
     <header>       
          <!-- Fixed navbar -->
@@ -10,33 +19,22 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="index.html"><img src="images/IzerLabsLogo.png" alt="logo" /></a>
+              <a class="navbar-brand" href="index.php"><img src="images/IzerLabsLogo.png" alt="logo" /></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="services.html">Services</a></li>
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="about-us.php">About Us</a></li>
+                            <li><a href="services.php">Services</a></li>
                             <li class="active"><a href="portfolio.php">Browse Homes</a></li>
-                            <li><a href="portfolio.php">Pricing</a></li>
-                            <li><a href="contact-us.html">Request a listing</a></li>                     
+                            <li><a href="pricing.php">Pricing</a></li>
+                            <li><a href="contact-us.php">Request a listing</a></li>                     
               </ul>
             </div><!--/.nav-collapse -->
           </div>
          </nav>
        </header>
     <!-- /header -->
-
-<?php
-
-$projectRoot = "./";
-include_once($projectRoot."/template/header.php");
-include_once($projectRoot."/includes/functions.php");
-
-$allListings =  getAllListings();
-$counter =  1;
-?>
-
 
     <section class="title">
         <div class="container">
@@ -46,7 +44,7 @@ $counter =  1;
                 </div>
                 <div class="col-md-6">
                     <ul class="breadcrumb pull-right">
-                        <li><a href="index.html">Home</a></li> 
+                        <li><a href="index.php">Home</a></li> 
                         <li class="active">Browse Homes</li>
                     </ul>
                 </div>

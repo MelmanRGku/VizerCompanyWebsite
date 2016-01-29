@@ -24,12 +24,12 @@
                 <h4>Useful links</h4>
                 <div>
                     <ul class="arrow">
-					    <li><i class="fa fa-angle-double-right"></i> <a href="#">Home</a></li>
-                        <li><i class="fa fa-angle-double-right"></i> <a href="#">About Us</a></li> 
-                        <li><i class="fa fa-angle-double-right"></i> <a href="#">Services</a></li>
-                        <li><i class="fa fa-angle-double-right"></i> <a href="#">Browse Homes</a></li> 
-                        <li><i class="fa fa-angle-double-right"></i> <a href="#">Pricing</a></li>
-                        <li><i class="fa fa-angle-double-right"></i> <a href="#">Request Listings</a></li>
+					    <li><i class="fa fa-angle-double-right"></i> <a href="index.php">Home</a></li>
+                        <li><i class="fa fa-angle-double-right"></i> <a href="about-us.php">About Us</a></li> 
+                        <li><i class="fa fa-angle-double-right"></i> <a href="services.php">Services</a></li>
+                        <li><i class="fa fa-angle-double-right"></i> <a href="portfolio.php">Browse Homes</a></li> 
+                        <li><i class="fa fa-angle-double-right"></i> <a href="pricing.php">Pricing</a></li>
+                        <li><i class="fa fa-angle-double-right"></i> <a href="contact-us.php">Request Listings</a></li>
                         </ul>
                 </div>  
             </div>
