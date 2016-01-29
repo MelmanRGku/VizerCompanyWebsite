@@ -51,48 +51,53 @@ include_once($projectRoot."/template/header.php");
     <!-- / .title -->  
     <section id="contact-page" class="container">
 	 <div class="head-title">
-            <h2>Get In Touch</h2>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</p>
+            <h2>Want to stand out from the crowd? Start your virtual toruing service today!</h2>
+            <p class="lead">Request a house scan</p>
         </div>
         <div class="row">
  
         <div class="col-md-3">
-            <h4>Our Address</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+            <h4>Our Place</h4>
+            <p>We  offer a fast response service! We want to make sure you get the scan as fast as possible.</p>
+            <p>Have any questions? Our doors are always open.</p>
           <ul class="unstyled address">
                     <li>
-                        <i class="fa fa-home"></i>1234 Andrews Street, Micigana<br>NewYork 10250
+                        <i class="fa fa-home"></i>University of Calgary<br>Calgary Alberta
                     </li>
                     <li>
                         <i class="fa fa-envelope"></i>
-                        support@youremail.com
+                        contact@IzerLabs.com
                     </li>
                     <li>
                         <i class="fa fa-globe"></i>
-                        www.yoursite.com
+                        www.izerlabs.com
                     </li>
                     <li>
                         <i class="fa fa-phone"></i>
-                        123-456-7891
+                        555-Taco
                     </li>
                 </ul>
         </div>
          <div class="col-md-8"> 
                 <div class="status alert alert-success" style="display: none"></div>
 
-                <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="sendemail.php">
+                 <form role="form" method="post" action="./submitRequest.php" enctype="multipart/form-data">
                   <div class="row">
                     <div class="col-md-5">
                         <label>First Name</label>
-                        <input type="text" class="input-block-level" required="required" placeholder="Your First Name">
+                        <input type="text" class="form-control" required="required" placeholder="Your First Name" name="firstName">
                         <label>Last Name</label>
-                        <input type="text" class="input-block-level" required="required" placeholder="Your Last Name">
-                        <label>Email Address</label>
-                        <input type="text" class="input-block-level" required="required" placeholder="Your email address">
+                        <input type="text" class="form-control" required="required" placeholder="Your Last Name" name="lastName">
+                        <label>Email Address</label>    
+                        <input type="text" class="form-control" required="required" placeholder="Your email address" name="emailAddress">
                     </div>
                     <div class="col-md-7">
+                        <label>House Address</label>    
+                        <input type="text" class="form-control" required="required" placeholder="123 Taco Street" name="houseAddress">
+                        <label>Phone Number</label>    
+                        <input type="text" class="form-control" required="required" placeholder="123-456-7890" name="phoneNumber">
                         <label>Message</label>
-                        <textarea name="message" id="message" required="required" class="input-block-level" rows="8"></textarea>
+                        <input type="text" class="form-control" required="required" placeholder="Additional Information" name="messageField">
                     </div>
 
                 </div>

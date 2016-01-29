@@ -11,13 +11,35 @@ use Aws\S3\S3Client;
 use Aws\DynamoDb\Exception\DynamoDbException;
 use Aws\DynamoDb\Marshaler;
 
-function getSDKConnection()
+function getDBConnection()
 {
 	date_default_timezone_set('UTC');
 	global $projectRoot;
 
 	$sdk = new Aws\Sdk([
     'endpoint'   => 'https://dynamodb.us-west-2.amazonaws.com',
+    'region'   => 'us-west-2',
+    'version'  => 'latest',
+    'credentials' => [
+    'key'    => 'AKIAICEANPUXOOHUW7GQ',
+    'secret' => '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'
+    ],
+    'http'    => [
+        'verify' => "C:\wamp\www\IzerLabsTemplate\includes\awsSDK\ca-bundle.crt"
+    ]
+    ]);
+
+	return $sdk;
+
+}
+
+function getS3Connection()
+{
+	date_default_timezone_set('UTC');
+	global $projectRoot;
+
+	$sdk = new Aws\Sdk([
+	'endpoint'   => 'https://s3-us-west-2.amazonaws.com',
     'region'   => 'us-west-2',
     'version'  => 'latest',
     'credentials' => [
@@ -35,21 +57,9 @@ function getSDKConnection()
 
 function addToListingDB($item)
 {
-	$sdkConn = getSDKConnection();
+	$sdkConn = getDBConnection();
 	$dynamodb = $sdkConn->createDynamoDb();
 	$marshaler = new Marshaler();
-
-	$tableName = 'Listing';
-
-	$ListingID = 21312;
-	$UserID = 00000001;
-	$StartingRoomID = 00000006;
-	$IsPrivate = True;
-	$HousePhotoURL = 'testurl.com';
-	$Description = 'This house is a test house';
-	$Address = 'Test Address';
-	$MLSURL = 'testmlsurl.ca';
-	$Price = '$0';
 
 	$params = [
     	'TableName' => 'Listing',
@@ -66,9 +76,30 @@ function addToListingDB($item)
 	}
 }
 
+function addToRequestDB($item)
+{
+	$sdkConn = getDBConnection();
+	$dynamodb = $sdkConn->createDynamoDb();
+	$marshaler = new Marshaler();
+
+	$params = [
+    	'TableName' => 'Request',
+    	'Item' => $item
+	];
+
+	try {
+    	$result = $dynamodb->putItem($params);
+    	print_r($params);
+
+	} catch (DynamoDbException $e) {
+    	echo "Unable to add item:\n";
+    	echo $e->getMessage() . "\n";
+	}
+}
+
 function getAllListings()
 {
-	$sdkConn = getSDKConnection();
+	$sdkConn = getDBConnection();
 	$dynamodb = $sdkConn->createDynamoDb();
 
     $iterator = $dynamodb->getIterator('Scan', array( 
@@ -80,9 +111,34 @@ function getAllListings()
     return $returnArr;
 }
 
+function uploadImage($imageAddrs, $imgID)
+{
+	$sdkConn = getS3Connection();
+	$s3 = $sdkConn->createS3();
+
+	$result = $s3->putObject(array(
+    'Bucket'     => 'izerlabshousestorage',
+    'Key'        => $imgID,
+    'ContentType'  => 'image/jpg',
+    'SourceFile' => $imageAddrs,
+    'ACL'          => 'public-read',
+));
+	// print_r($result);
+	
+	// We can poll the object until it is accessible
+	$s3->waitUntil('ObjectExists', array(
+    	'Bucket' => 'izerlabshousestorage',
+   		 'Key'    => $imgID
+	));
+
+	//delete temp file
+	unlink($imageAddrs);
+
+}
+
 function searchListings($query)
 {
-	$sdkConn = getSDKConnection();
+	$sdkConn = getDBConnection();
 	$dynamodb = $sdkConn->createDynamoDb();
 
     $iterator = $dynamodb->getIterator('Scan', array( 

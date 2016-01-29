@@ -61,7 +61,6 @@ $counter =  1;
         <ul class="gallery">
             <!--Item 1-->
            <?php
-            echo count($allListings);
             foreach($allListings as $listing)
             {
             ?>
