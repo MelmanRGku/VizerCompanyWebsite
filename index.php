@@ -1,28 +1,9 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Izer Labs Company</title>
-    <meta name="description" content="Izer Labs Main Customer Page">
-    <meta name="viewport" content="width=device-width">
+<?php
 
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="font/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/sl-slide.css">
+$projectRoot = "./";
+include_once($projectRoot."/template/header.php");
 
-    <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
- 
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
-</head>
-
-<body>
-
+?>
     <!--Header-->
     <header>       
 		 <!-- Fixed navbar -->
@@ -35,16 +16,16 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			  </button>
-			  <a class="navbar-brand" href="index.html"><img src="images/IzerLabsLogo.png" alt="logo" /></a>
+			  <a class="navbar-brand" href="index.php"><img src="images/IzerLabsLogo.png" alt="logo" /></a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 			  <ul class="nav navbar-nav">
-			   <li class="active"><a href="index.html">Home</a></li>
-							<li><a href="about-us.html">About Us</a></li>
-							<li><a href="services.html">Services</a></li>
+			   <li class="active"><a href="index.php">Home</a></li>
+							<li><a href="about-us.php">About Us</a></li>
+							<li><a href="services.php">Services</a></li>
                             <li><a href="portfolio.php">Browse Homes</a></li>
-							<li><a href="portfolio.php">Pricing</a></li>
-				            <li><a href="contact-us.html">Request a listing</a></li>                     
+							<li><a href="pricing.php">Pricing</a></li>
+				            <li><a href="contact-us.php">Request a listing</a></li>                     
 			  </ul>
 			</div><!--/.nav-collapse -->
 		  </div>
@@ -74,7 +55,7 @@
                 <div class="sl-slide-inner">
                     <div class="container"> 
                         <h2>A New Perspective</h2>
-                        <h3 class="head-title">Experience a full touring experience without leaving the comfort of your own home</h3> 
+                        <h3 class="head-title">Experience a full touring experience without living the confort of your own home</h3> 
                     </div>
                 </div>
             </div>
@@ -85,7 +66,7 @@
                 <div class="sl-slide-inner">
                    <div class="container"> 
                     <h2>Obtain Specific House Details</h2>
-                    <h3 class="head-title">Have a new furnace? Recently replaced the counter tops? Highlight information as viewers take a tour</h3> 
+                    <h3 class="head-title">Got a new furnace? Recently replaced the counter tops? Highlight information as people take a tour</h3> 
                 </div>
             </div>
         </div>
@@ -112,7 +93,7 @@
     <div class="container">
         <div class="center head-title">
             <h2>Virtual Reality Real Estate Touring</h2>
-            <p class="lead">Experience various houses without physically leaving your home</p>
+            <p class="lead">Experience various amount of houses without phiscally leaving your home</p>
         </div>
 
         <div class="row">
@@ -123,7 +104,7 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">Virtual Reality</h4>
-                        <p>A simple and inexpensive cardboard viewer allows you to transform your smartphone into a full virtual touring experience</p>
+                        <p>A simple and innexpensive cardboard viewer allows you to transform your smartphone into a full virtual touring experience</p>
                     </div>
                 </div>
             </div>            
@@ -147,7 +128,7 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">Discover Hidden Features</h4>
-                        <p>Discover more information about specific features around the house while you take your virtual tour</p>
+                        <p>Discover more information about specific features around the house whiel you take your virtual tour</p>
                     </div>
                 </div>
             </div>
@@ -162,8 +143,8 @@
                         <i class="fa fa-code"></i>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">Make Your House Standout</h4>
-                        <p>Standout from average picture listings. Offer a full virtual touring experience to potential buyers</p>
+                        <h4 class="media-heading">Make Your House Stand out</h4>
+                        <p>Standout from the plain old picture listings. Offer a full virtual touring experience to potential buyers</p>
                     </div>
                 </div>
             </div>            
@@ -174,8 +155,8 @@
                         <i class="fa fa-cloud"></i>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">An Easy Way to Promote Your House</h4>
-                        <p>Place the link to your Vritual Tour anywhere!</p>
+                        <h4 class="media-heading">An Easy Way to Promote your House</h4>
+                        <p>Place the link to your Vritual Toruing anywhere!</p>
                     </div>
                 </div>
             </div>            
@@ -186,8 +167,8 @@
                         <i class="fa fa-bar-chart"></i>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">Add a New Dimension to Home Viewing</h4>
-                        <p>Highlight everything from floor to ceiling!</p>
+                        <h4 class="media-heading">FREE TACOS</h4>
+                        <p>I don't know what else to put</p>
                     </div>
                 </div>
             </div>
@@ -227,12 +208,17 @@
             <div class="col-md-4">
     			<div class="headline"><h2>Latest News</h2></div>
     			<p>
-				Izer labs invites you to attend the Capstone design fair on March 30th 2016 to get hands on experience with the latest protype of Vizer, The Virtual Reality Touring service.
+				Izer labs welcomes you to attend the capstone fair on March 30th 2016 to get hands on experience with the latest protype of Vizer, THe virtual Reality Touring service.
 				</p>
             </div><!--/col-md-4-->
     	</div>
 </div>		
 </section>
+
+<?php
+
+include_once($projectRoot."/template/footer.php");
+?>
 
 <script src="js/vendor/jquery-1.9.1.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>

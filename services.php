@@ -1,65 +1,40 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Services | Webthemez</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+<?php
 
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="font/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/sl-slide.css">
+$projectRoot = "./";
+include_once($projectRoot."/template/header.php");
 
-    <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-
-    
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
-</head>
+?>
 
 <body>
 
     <!--Header-->
-     <header>       
-		 <!-- Fixed navbar -->
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-		  <div class="container">
-			<div class="navbar-header">
-			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			  </button>
-			  <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo" /></a>
-			</div>
-			<div id="navbar" class="navbar-collapse collapse">
-			  <ul class="nav navbar-nav">
-			   <li><a href="index.html">Home</a></li>
-							<li><a href="about-us.html">About Us</a></li>
-							<li class="active"><a href="services.html">Services</a></li>
-							<li><a href="portfolio.html">Portfolio</a></li>
-				<li class="dropdown">
-				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
-				   <ul class="dropdown-menu">
-									<li><a href="pricing.html">Pricing</a></li>
-									<li><a href="404.html">404</a></li>
-									<li><a href="typography.html">Typography</a></li>
-								</ul>
-				</li>
-				 <li><a href="contact-us.html">Contact</a></li>
-                       
-			  </ul>
-			</div><!--/.nav-collapse -->
-		  </div>
-		 </nav>
-	   </header> <!-- /header -->
-
+    <header>       
+         <!-- Fixed navbar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.php"><img src="images/IzerLabsLogo.png" alt="logo" /></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="about-us.php">About Us</a></li>
+                            <li class="active"><a href="services.php">Services</a></li>
+                            <li><a href="portfolio.php">Browse Homes</a></li>
+                            <li><a href="pricing.php">Pricing</a></li>
+                            <li><a href="contact-us.php">Request a listing</a></li>                     
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+         </nav>
+       </header>
+    <!-- /header -->
 
     <section class="title">
         <div class="container">
@@ -69,14 +44,14 @@
                 </div>
                 <div class="col-md-6">
                     <ul class="breadcrumb pull-right">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.php">Home</a></li> 
                         <li class="active">Services</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
-    <!-- / .title -->       
+    <!-- / .title -->    
 
     
 <!--Services-->
@@ -189,7 +164,7 @@
 <!--/Services-->
 <?php
 
-include_once("/template/footer.php");
+include_once($projectRoot."/template/footer.php");
 ?>
 
 <script src="js/vendor/jquery-1.9.1.min.js"></script>
