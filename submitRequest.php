@@ -14,7 +14,7 @@ $phoneNumber = $_POST["phoneNumber"];
 $message = $_POST["messageField"];
 $status = "unhandled";
 $php_timestamp = time();
-$php_timestamp_date = date("d/m/Y", $php_timestamp);
+$php_timestamp_date = date("Y/m/d", $php_timestamp);
 
 $requestID = createUUID();
 
@@ -27,7 +27,17 @@ $item = array(
   "Phone" => array('S' => $phoneNumber),
   "Status" => array('S' => $status),
   "Timestamp" => array('S' => $php_timestamp_date),
+  "LastEditedBy" => array('S' => 'NULL'),
+  "LastEditedOn" => array('S' => 'NULL'),
   );
+
+/*$user = array(
+  "UserID" => array('S' => $requestID),
+  "Email" => array('S' => $userEmail),
+  "Name" => array('S' => $NameOfRequester),
+  "ContactPhone" => array('S' => $phoneNumber),
+  "Password" => array('S' => $phoneNumber)
+  );*/
 
 addToRequestDB($item);
 
