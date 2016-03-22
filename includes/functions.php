@@ -25,8 +25,8 @@ function getDBConnection()
     'secret' => 'O+SBFW0nkY1Z9sYez53x4uRo4d9ZAZcN9Ze2TA1M'
     ],
     'http'    => [
-        'verify' => $projectRoot .'includes/awsSDK/ca-bundle.crt'
-        #'verify' => 'C:\wamp\www\ca-bundle.crt'
+        #'verify' => $projectRoot .'includes/awsSDK/ca-bundle.crt'
+        'verify' => 'C:\wamp\www\ca-bundle.crt'
     ]
     ]);
 
@@ -48,8 +48,8 @@ function getS3Connection()
     'secret' => 'O+SBFW0nkY1Z9sYez53x4uRo4d9ZAZcN9Ze2TA1M'
     ],
     'http'    => [
-        'verify' => $projectRoot .'includes/awsSDK/ca-bundle.crt'
-        #'verify' => 'C:\wamp\www\ca-bundle.crt'
+        #'verify' => $projectRoot .'includes/awsSDK/ca-bundle.crt'
+        'verify' => 'C:\wamp\www\ca-bundle.crt'
     ]
 ]);
 
@@ -134,7 +134,7 @@ function getAllListings()
     return $returnArr;
 }
 
-function getUserPassword($email)
+function getUser($email)
 {
     $sdkConn = getDBConnection();
     $dynamodb = $sdkConn->createDynamoDb();
@@ -150,9 +150,8 @@ function getUserPassword($email)
     ));
 
     $returnArr = iterator_to_array($iterator);
-    $returnPass = $returnArr['Items'][0]['Password']['S'];
 
-    return $returnPass;
+    return $returnArr;
 }
 
 function uploadImage($imageAddrs, $imgID)

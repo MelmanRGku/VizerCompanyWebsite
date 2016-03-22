@@ -7,7 +7,7 @@ include_once($projectRoot."/includes/functions.php");
 $email = $_POST["username"];
 $password = $_POST["password"];
 //$password = hash("sha256", $_POST["password"], false);
-$truePassword = getUserPassword($email);
+$truePassword = getUser($email)['Items'][0]['Password']['S'];
 
 if (strcmp ($password, $truePassword) == 0) {
   session_unset();

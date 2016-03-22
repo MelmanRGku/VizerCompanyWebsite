@@ -1,7 +1,14 @@
 <?php
 
+session_start();
+
 $projectRoot = "./";
 include_once($projectRoot."/template/header.php");
+include_once($projectRoot."/includes/functions.php");
+
+if(isset($_SESSION['user'])) {
+    $user = getUser($_SESSION['user']);
+}
 
 ?>
     <!--Header-->
@@ -26,7 +33,13 @@ include_once($projectRoot."/template/header.php");
                             <li><a href="portfolio.php">Browse Homes</a></li>
                             <li><a href="pricing.php">Pricing</a></li>
                             <li class="active"><a href="contact-us.php">Request a Listing</a></li>
-                            <li><a href="login.php">Login</a></li>                     
+                            <?php if(!isset($_SESSION['user'])) : ?> 
+                            <li><a href="login.php">Login</a></li>
+                            <?php endif; ?>  
+                            <?php if(isset($_SESSION['user'])) : ?>  
+                            <li><a href="logout.php">Logout
+                                <?php print_r(getUser($_SESSION['user'])['Items'][0]['Name']['S']); ?></a></li>
+                            <?php endif; ?>                      
               </ul>
             </div><!--/.nav-collapse -->
           </div>
@@ -85,18 +98,34 @@ include_once($projectRoot."/template/header.php");
                  <form role="form" method="post" action="./submitRequest.php" enctype="multipart/form-data">
                   <div class="row">
                     <div class="col-md-5">
-                        <label>First Name</label>
-                        <input type="text" class="form-control" required="required" placeholder="Your First Name" name="firstName">
-                        <label>Last Name</label>
-                        <input type="text" class="form-control" required="required" placeholder="Your Last Name" name="lastName">
-                        <label>Email Address</label>    
-                        <input type="text" class="form-control" required="required" placeholder="Your email address" name="emailAddress">
+                        <?php if(!isset($_SESSION['user'])) : ?>
+                            <label>First Name</label>
+                            <input type="text" class="form-control" required="required" placeholder="Your First Name" name="firstName" required>
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" required="required" placeholder="Your Last Name" name="lastName" required>
+                            <label>Email Address</label>    
+                            <input type="text" class="form-control" required="required" placeholder="Your email address" name="emailAddress" required>
+                        <?php endif; ?>
+                        <?php if(isset($_SESSION['user'])) : ?>
+                            <label>First Name</label>
+                            <input type="text" class="form-control" required="required" value=<?php print_r($user['Items'][0]['Name']['S']) ?> name="firstName" required>
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" required="required" value=<?php print_r($user['Items'][0]['Name']['S']) ?> name="lastName" required>
+                            <label>Email Address</label>    
+                            <input type="text" class="form-control" required="required" value=<?php print_r($user['Items'][0]['Email']['S']) ?> name="emailAddress" required>
+                        <?php endif; ?>
                     </div>
                     <div class="col-md-7">
                         <label>House Address</label>    
-                        <input type="text" class="form-control" required="required" placeholder="123 Taco Street" name="houseAddress">
+                        <input type="text" class="form-control" required="required" placeholder="123 Taco Street" name="houseAddress" required>
+                        <?php if(!isset($_SESSION['user'])) : ?>
                         <label>Phone Number</label>    
-                        <input type="text" class="form-control" required="required" placeholder="123-456-7890" name="phoneNumber">
+                        <input type="text" class="form-control" required="required" placeholder="123-456-7890" name="phoneNumber" required>
+                        <?php endif; ?>
+                        <?php if(isset($_SESSION['user'])) : ?>
+                        <label>Phone Number</label>    
+                        <input type="text" class="form-control" required="required" value=<?php print_r($user['Items'][0]['ContactPhone']['S']) ?> name="phoneNumber" required>
+                        <?php endif; ?>
                         <label>Message</label>
                         <input type="text" class="form-control" required="required" placeholder="Additional Information" name="messageField">
                     </div>
