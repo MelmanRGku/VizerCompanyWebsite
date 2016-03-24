@@ -1,7 +1,10 @@
 <?php
 
+session_start();
+
 $projectRoot = "./";
 include_once($projectRoot."/template/header.php");
+include_once($projectRoot."/includes/functions.php");
 
 ?>
 
@@ -26,7 +29,14 @@ include_once($projectRoot."/template/header.php");
                             <li><a href="services.php">Services</a></li>
                             <li><a href="portfolio.php">Browse Homes</a></li>
                             <li class="active"><a href="pricing.php">Pricing</a></li>
-                            <li><a href="contact-us.php">Request a listing</a></li>                     
+                            <li><a href="contact-us.php">Request a listing</a></li>
+                            <?php if(!isset($_SESSION['user'])) : ?>  
+                            <li><a href="login.php">Login</a></li>
+                            <?php endif; ?>  
+                            <?php if(isset($_SESSION['user'])) : ?>  
+                            <li><a href="logout.php">Logout
+                                <?php print_r(getUser($_SESSION['user'])['Items'][0]['Name']['S']); ?></a></li>
+                            <?php endif; ?>                    
               </ul>
             </div><!--/.nav-collapse -->
           </div>

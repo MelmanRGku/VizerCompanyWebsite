@@ -26,6 +26,7 @@ function getDBConnection()
     ],
     'http'    => [
         'verify' => $projectRoot .'includes/awsSDK/ca-bundle.crt'
+        #'verify' => 'C:\wamp\www\ca-bundle.crt'
     ]
     ]);
 
@@ -48,6 +49,7 @@ function getS3Connection()
     ],
     'http'    => [
         'verify' => $projectRoot .'includes/awsSDK/ca-bundle.crt'
+        #'verify' => 'C:\wamp\www\ca-bundle.crt'
     ]
 ]);
 
@@ -97,6 +99,27 @@ function addToRequestDB($item)
 	}
 }
 
+function addToUserDB($item)
+{
+    $sdkConn = getDBConnection();
+    $dynamodb = $sdkConn->createDynamoDb();
+    $marshaler = new Marshaler();
+
+    $params = [
+        'TableName' => 'User',
+        'Item' => $item
+    ];
+
+    try {
+        $result = $dynamodb->putItem($params);
+        // print_r($params);
+
+    } catch (DynamoDbException $e) {
+        echo "Unable to add item:\n";
+        echo $e->getMessage() . "\n";
+    }
+}
+
 function getAllListings()
 {
 	$sdkConn = getDBConnection();
@@ -105,6 +128,26 @@ function getAllListings()
     $iterator = $dynamodb->getIterator('Scan', array( 
 		'TableName'     => 'Listing',
     	));
+
+    $returnArr = iterator_to_array($iterator);
+
+    return $returnArr;
+}
+
+function getUser($email)
+{
+    $sdkConn = getDBConnection();
+    $dynamodb = $sdkConn->createDynamoDb();
+
+    $iterator = $dynamodb->query(array( 
+        'TableName'     => 'User',
+        'IndexName'     => 'Email-index',
+        'KeyConditionExpression' => 'Email = :v_id',
+        'ExpressionAttributeValues' =>  [
+        ':v_id' => [
+            'S' => $email]
+        ],
+    ));
 
     $returnArr = iterator_to_array($iterator);
 
