@@ -55,7 +55,7 @@ include_once($projectRoot."/template/header.php");
                 <div class="sl-slide-inner">
                     <div class="container"> 
                         <h2>A New Perspective</h2>
-                        <h3 class="head-title">Experience a full touring experience without living the confort of your own home</h3> 
+                        <h3 class="head-title">Experience a full touring experience without leaving the comfort of your own home</h3> 
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@ include_once($projectRoot."/template/header.php");
                 <div class="sl-slide-inner">
                    <div class="container"> 
                     <h2>Obtain Specific House Details</h2>
-                    <h3 class="head-title">Got a new furnace? Recently replaced the counter tops? Highlight information as people take a tour</h3> 
+                    <h3 class="head-title">Got a new furnace? Recently replaced the counter tops? Highlight features as potential buyers take a tour</h3> 
                 </div>
             </div>
         </div>
@@ -93,7 +93,7 @@ include_once($projectRoot."/template/header.php");
     <div class="container">
         <div class="center head-title">
             <h2>Virtual Reality Real Estate Touring</h2>
-            <p class="lead">Experience various amount of houses without phiscally leaving your home</p>
+            <p class="lead">Experience various houses without physically leaving your home</p>
         </div>
 
         <div class="row">
@@ -104,7 +104,7 @@ include_once($projectRoot."/template/header.php");
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">Virtual Reality</h4>
-                        <p>A simple and innexpensive cardboard viewer allows you to transform your smartphone into a full virtual touring experience</p>
+                        <p>A simple and inexpensive cardboard viewer allows you to transform your smartphone into a full virtual touring experience</p>
                     </div>
                 </div>
             </div>            
@@ -128,7 +128,7 @@ include_once($projectRoot."/template/header.php");
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">Discover Hidden Features</h4>
-                        <p>Discover more information about specific features around the house whiel you take your virtual tour</p>
+                        <p>Discover more information about specific features around the house while you take your virtual tour</p>
                     </div>
                 </div>
             </div>
@@ -144,7 +144,7 @@ include_once($projectRoot."/template/header.php");
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">Make Your House Stand out</h4>
-                        <p>Standout from the plain old picture listings. Offer a full virtual touring experience to potential buyers</p>
+                        <p>Standout from average picture listings. Offer a full virtual touring experience to potential buyers</p>
                     </div>
                 </div>
             </div>            
@@ -156,7 +156,7 @@ include_once($projectRoot."/template/header.php");
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">An Easy Way to Promote your House</h4>
-                        <p>Place the link to your Vritual Toruing anywhere!</p>
+                        <p>Place the link to your Vritual Tour anywhere!</p>
                     </div>
                 </div>
             </div>            
@@ -167,8 +167,8 @@ include_once($projectRoot."/template/header.php");
                         <i class="fa fa-bar-chart"></i>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">FREE TACOS</h4>
-                        <p>I don't know what else to put</p>
+                        <h4 class="media-heading">Add a New Dimension to Home Viewing</h4>
+                        <p>Highlight everything from floor to ceiling!</p>
                     </div>
                 </div>
             </div>
@@ -208,7 +208,7 @@ include_once($projectRoot."/template/header.php");
             <div class="col-md-4">
     			<div class="headline"><h2>Latest News</h2></div>
     			<p>
-				Izer labs welcomes you to attend the capstone fair on March 30th 2016 to get hands on experience with the latest protype of Vizer, THe virtual Reality Touring service.
+				Izer labs welcomes you to attend the capstone fair on March 30th 2016 to get a hands on experience with the latest protype of Vizer, The Virtual Reality Touring service.
 				</p>
             </div><!--/col-md-4-->
     	</div>

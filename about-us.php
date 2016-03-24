@@ -54,14 +54,14 @@ include_once($projectRoot."/template/header.php");
         <div class="row">
             <div class="col-md-6">
 			<h2>Who We Are?</h2>
-               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.Ullamco laboris.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.Ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p><br>
+               <p>We are a group of fourth year engineering students with desire to change and optimize the real estate market today!</p>
+                    <p>In order to complete our degrees in engineering we were required to do a design project from start to finish. Through a group interest in gaming and virtual reality we decided that new technology that was entering the gaming world could be used in other markets.  This is what lead to the development of the Izer Labs Vizer that brings virtual reality touring to the real estate market. This product work to:</p><br>
                 <ul class="list-unstyled">
-                    <li><i class="fa fa-check color-green"></i> Donec id elit non mi porta gravida</li>
-                    <li><i class="fa fa-check color-green"></i> Corporate and Creative</li>
-                    <li><i class="fa fa-check color-green"></i> Responsive Bootstrap Template</li>
-                    <li><i class="fa fa-check color-green"></i> Elit non mi porta gravida</li>
-                    <li><i class="fa fa-check color-green"></i> Award winning digital agency</li>
+                    <li><i class="fa fa-check color-green"></i> Decrease time spent viewing homes in person</li>
+                    <li><i class="fa fa-check color-green"></i> Increase realiabilty of images</li>
+                    <li><i class="fa fa-check color-green"></i> Help realtors highlight key features of a home</li>
+                    <li><i class="fa fa-check color-green"></i> Enhance the home viewing experience</li>
+                    <li><i class="fa fa-check color-green"></i> Change the real estate market for the better</li>
                 </ul><br>
  
             </div>
@@ -75,28 +75,28 @@ include_once($projectRoot."/template/header.php");
  <br> 
  	<div class="row">
             <div class="col-md-6"> 
-               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.Ullamco laboris.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.Ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p><br>
+               <p>Pictures from online listings for houses can undersell a property or be deciving so that is why we came up with Vizer. This product allows the user to turn their smartphone into a virtual reality viewer throught the use of our website and a Google Cardboard. Besides getting a more accurate view of a home the Vizer also helps to save time by eliminating the need to see numerous homes in person.</p>
+                    <p>  </p><br>
                
  
             </div>
             <div class="col-md-6">
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.Ullamco laboris.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.Ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p><br>
+         <p>  </p>
+                    <p>  </p><br>
                
  
             </div>
         </div>
             <h2>Our Team</h2>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</p>
+            <p class="lead">The brains and faces behind Izer Labs</p>
         </div>
         <div class="row">
             <div class="col-sm-6 col-md-3">
     <div class="thumbnail">
-     <img src="images/team1.jpg" alt="" >
+     <img src="images/Fadi.jpg" alt="" >
       <div class="caption">
-        <h4>Keant Michell</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+        <h4>Fadi Botros</h4>
+        <p>Fourth year software engineering student at the University of Calgary and team leader for Izer Labs.</p>
          <a class="btn btn-social btn-facebook" href="#"><i class="fa fa-facebook"></i></a> <a class="btn btn-social btn-google-plus" href="#"><i class="fa fa-google-plus"></i></a> <a class="btn btn-social btn-twitter" href="#"><i class="fa fa-twitter"></i></a> <a class="btn btn-social btn-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
       </div>
     </div>
@@ -104,10 +104,10 @@ include_once($projectRoot."/template/header.php");
 
             <div class="col-sm-6 col-md-3">
     <div class="thumbnail">
-     <img src="images/team2.jpg" alt="" >
+     <img src="images/Katherine.jpg" alt="" >
       <div class="caption">
-        <h4>Vincen Jemesl</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+        <h4>Katherine Juhasz</h4>
+        <p>Fourth year electrical engineering student at the University of Calgary.</p>
           <a class="btn btn-social btn-facebook" href="#"><i class="fa fa-facebook"></i></a> <a class="btn btn-social btn-google-plus" href="#"><i class="fa fa-google-plus"></i></a> <a class="btn btn-social btn-twitter" href="#"><i class="fa fa-twitter"></i></a> <a class="btn btn-social btn-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
       </div>
     </div>
@@ -115,20 +115,20 @@ include_once($projectRoot."/template/header.php");
 
             <div class="col-sm-6 col-md-3">
     <div class="thumbnail">
-     <img src="images/team3.jpg" alt="" >
+     <img src="images/Melvin.jpg" alt="" >
       <div class="caption">
-        <h4>Rechn Kristean</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+        <h4>Melvin Rodriguez</h4>
+        <p>Fourth year software engineering student at the University of Calgary.</p>
          <a class="btn btn-social btn-facebook" href="#"><i class="fa fa-facebook"></i></a> <a class="btn btn-social btn-google-plus" href="#"><i class="fa fa-google-plus"></i></a> <a class="btn btn-social btn-twitter" href="#"><i class="fa fa-twitter"></i></a> <a class="btn btn-social btn-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
       </div>
     </div>
   </div>
            <div class="col-sm-6 col-md-3">
     <div class="thumbnail">
-     <img src="images/team4.jpg" alt="" >
+     <img src="images/Matt.jpg" alt="" >
       <div class="caption">
-        <h4>John Kernrl</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+        <h4>Matthew Howitt</h4>
+        <p>Fourth year software engineering student at the University of Calgary.</p>
          <a class="btn btn-social btn-facebook" href="#"><i class="fa fa-facebook"></i></a> <a class="btn btn-social btn-google-plus" href="#"><i class="fa fa-google-plus"></i></a> <a class="btn btn-social btn-twitter" href="#"><i class="fa fa-twitter"></i></a> <a class="btn btn-social btn-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
       </div>
     </div>
