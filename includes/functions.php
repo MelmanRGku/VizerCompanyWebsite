@@ -134,6 +134,22 @@ function getAllListings()
     return $returnArr;
 }
 
+function getListing($id)
+{
+    $sdkConn = getDBConnection();
+    $dynamodb = $sdkConn->createDynamoDb();
+
+    $item = $dynamodb->getItem(array( 
+        'TableName'     => 'Listing',
+        'ConsistentRead' => true,
+        'Key' => [
+            'ListingID' => array('S' => $id),
+        ],
+    ));
+
+    return $item;
+}
+
 function getUsersListings($email)
 {
     $sdkConn = getDBConnection();
@@ -166,6 +182,26 @@ function getUser($email)
         'ExpressionAttributeValues' =>  [
         ':v_id' => [
             'S' => $email]
+        ],
+    ));
+
+    $returnArr = iterator_to_array($iterator);
+
+    return $returnArr;
+}
+
+function getListingRooms($id)
+{
+    $sdkConn = getDBConnection();
+    $dynamodb = $sdkConn->createDynamoDb();
+
+    $iterator = $dynamodb->query(array( 
+        'TableName'     => 'Room',
+        'IndexName'     => 'ListingID-index',
+        'KeyConditionExpression' => 'ListingID = :v_id',
+        'ExpressionAttributeValues' =>  [
+        ':v_id' => [
+            'S' => $id]
         ],
     ));
 

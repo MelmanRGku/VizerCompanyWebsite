@@ -50,12 +50,12 @@ $counter =  1;
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1>Browse Homes</h1>
+                    <h1>My Listings</h1>
                 </div>
                 <div class="col-md-6">
                     <ul class="breadcrumb pull-right">
                         <li><a href="index.php">Home</a></li> 
-                        <li class="active">Browse Homes</li>
+                        <li class="active">My Listings</li>
                     </ul>
                 </div>
             </div>
@@ -65,8 +65,8 @@ $counter =  1;
 
     <section id="portfolio" class="container main">  
 <div class="head-title">
-            <h2>Browse Homes</h2>
-            <p class="lead">Available Houses</p>
+            <h2>My Listings</h2>
+            <p class="lead">Currently Listed Houses</p>
         </div>  
         <ul class="gallery">
             <!--Item 1-->
@@ -90,6 +90,7 @@ $counter =  1;
                   <?php
                     echo '<div class="desc">';
                     echo "<h5>".$listing["Address"]["S"]."</h5>";
+                    echo '<td><a type="button" href="./editListing.php?id='.$listing["ListingID"]["S"].'" class="btn btn-block btn-warning">Edit</a></td>';
                     echo "</div>";
                     echo '<div class="modal fade modal-'.$counter.'" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">'
                   ?>                
