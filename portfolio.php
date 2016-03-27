@@ -9,6 +9,17 @@ include_once($projectRoot."/includes/functions.php");
 $allListings =  getAllListings();
 $counter =  1;
 ?>
+
+<script>
+window.onload = function(){
+}
+
+function retrieveListingID(objbutton)
+{
+    $_SESSION['ListingID'] = objbutton.getAttribute('value');
+    return false;
+}
+</script>
     <!--Header-->
     <header>       
          <!-- Fixed navbar -->
@@ -104,7 +115,8 @@ $counter =  1;
                         echo '<div class="desc">';
                         echo "<h5>".$listing["Address"]["S"]."</h5>";
                         echo "<small>".$listing["City"]["S"]."</small>";
-                        echo '<h6><a href="http://ec2-52-35-129-61.us-west-2.compute.amazonaws.com/VizerVR/cardboard2/prototype1_VR.html" class="btn btn-transparent">Virtual Reality</a>         <a href="http://ec2-52-35-129-61.us-west-2.compute.amazonaws.com/VizerVR/cardboard2/prototype1.html" class="btn btn-transparent">Desktop Touring</a></h6>';
+                        echo '<h6><a class="btn btn-transparent" id="button'.$counter.'" value="'.$listing["ListingID"]["S"].'" onclick="retrieveListingID(this)" <a href="http://ec2-52-35-129-61.us-west-2.compute.amazonaws.com/VizerVR/MelvinExperiment/">Virtual Reality</a>
+                        <a href="http://ec2-52-35-129-61.us-west-2.compute.amazonaws.com/VizerVR/cardboard2/prototype1.html" class="btn btn-transparent">Desktop Touring</a></h6>';
                         echo "</div>";
                       ?>
                     </div>
@@ -121,6 +133,7 @@ $counter =  1;
         </ul>
         
     </section>
+
 
 <?php
 
