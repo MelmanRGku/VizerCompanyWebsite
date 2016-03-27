@@ -76,7 +76,7 @@ $listing = getListing($_GET["id"]);
                     <input type="hidden" class="form-control" name="idField" value=<?php print_r($listing["Item"]["ListingID"]["S"]) ?> required>
 
                     <label>Description</label>
-                    <input type="text" class="form-control" required="required" value=<?php print_r($listing["Item"]["Description"]["S"]) ?> name="descriptionField">
+                    <textarea class="form-control" required="required" name="descriptionField"><?php print_r($listing["Item"]["Description"]["S"]) ?></textarea>
                     <label>Private</label>
                     <input type="checkbox" name="privateField" <?php if($listing["Item"]["Private"]["BOOL"]) : ?> checked="checked" <?php endif; ?>>
                 </div>

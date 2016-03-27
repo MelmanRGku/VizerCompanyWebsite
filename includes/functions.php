@@ -210,6 +210,46 @@ function getListingRooms($id)
     return $returnArr;
 }
 
+function getRoomLinks($id)
+{
+    $sdkConn = getDBConnection();
+    $dynamodb = $sdkConn->createDynamoDb();
+
+    $iterator = $dynamodb->query(array( 
+        'TableName'     => 'Link',
+        'IndexName'     => 'RoomID1-index',
+        'KeyConditionExpression' => 'RoomID1 = :v_id',
+        'ExpressionAttributeValues' =>  [
+        ':v_id' => [
+            'S' => $id]
+        ],
+    ));
+
+    $returnArr = iterator_to_array($iterator);
+
+    return $returnArr;
+}
+
+function getRoomBubbles($id)
+{
+    $sdkConn = getDBConnection();
+    $dynamodb = $sdkConn->createDynamoDb();
+
+    $iterator = $dynamodb->query(array( 
+        'TableName'     => 'FeatureBubble',
+        'IndexName'     => 'RoomID-index',
+        'KeyConditionExpression' => 'RoomID = :v_id',
+        'ExpressionAttributeValues' =>  [
+        ':v_id' => [
+            'S' => $id]
+        ],
+    ));
+
+    $returnArr = iterator_to_array($iterator);
+
+    return $returnArr;
+}
+
 function uploadImage($imageAddrs, $imgID)
 {
 	$sdkConn = getS3Connection();

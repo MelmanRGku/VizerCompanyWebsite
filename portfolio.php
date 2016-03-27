@@ -73,6 +73,10 @@ $counter =  1;
            <?php
             foreach($allListings as $listing)
             {
+                if($listing["Private"]["BOOL"])
+                {
+                    continue;
+                }
             ?>
             <li>
                 <div class="preview">
