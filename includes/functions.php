@@ -134,6 +134,26 @@ function getAllListings()
     return $returnArr;
 }
 
+function getUsersListings($email)
+{
+    $sdkConn = getDBConnection();
+    $dynamodb = $sdkConn->createDynamoDb();
+
+    $iterator = $dynamodb->query(array( 
+        'TableName'     => 'Listing',
+        'IndexName'     => 'UserEmail-index',
+        'KeyConditionExpression' => 'UserEmail = :v_id',
+        'ExpressionAttributeValues' =>  [
+        ':v_id' => [
+            'S' => $email]
+        ],
+    ));
+
+    $returnArr = iterator_to_array($iterator);
+
+    return $returnArr;
+}
+
 function getUser($email)
 {
     $sdkConn = getDBConnection();

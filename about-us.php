@@ -34,6 +34,7 @@ include_once($projectRoot."/includes/functions.php");
                             <li><a href="login.php">Login</a></li>
                             <?php endif; ?>  
                             <?php if(isset($_SESSION['user'])) : ?>  
+                            <li><a href="userListings.php">My Listings</a></li> 
                             <li><a href="logout.php">Logout
                                 <?php print_r(getUser($_SESSION['user'])['Items'][0]['Name']['S']); ?></a></li>
                             <?php endif; ?>                    

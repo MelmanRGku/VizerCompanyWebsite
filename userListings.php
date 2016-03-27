@@ -6,7 +6,7 @@ $projectRoot = "./";
 include_once($projectRoot."/template/header.php");
 include_once($projectRoot."/includes/functions.php");
 
-$allListings =  getAllListings();
+$allListings =  getUsersListings($_SESSION["user"]);
 $counter =  1;
 ?>
     <!--Header-->
@@ -28,14 +28,14 @@ $counter =  1;
                             <li><a href="index.php">Home</a></li>
                             <li><a href="about-us.php">About Us</a></li>
                             <li><a href="services.php">Services</a></li>
-                            <li class="active"><a href="portfolio.php">Browse Homes</a></li>
+                            <li><a href="portfolio.php">Browse Homes</a></li>
                             <li><a href="pricing.php">Pricing</a></li>
                             <li><a href="contact-us.php">Request a listing</a></li>
                             <?php if(!isset($_SESSION['user'])) : ?>  
                             <li><a href="login.php">Login</a></li>
                             <?php endif; ?>  
-                            <?php if(isset($_SESSION['user'])) : ?>  
-                            <li><a href="userListings.php">My Listings</a></li> 
+                            <?php if(isset($_SESSION['user'])) : ?>
+                            <li class="active"><a href="userListings.php">My Listings</a></li> 
                             <li><a href="logout.php">Logout
                                 <?php print_r(getUser($_SESSION['user'])['Items'][0]['Name']['S']); ?></a></li>
                             <?php endif; ?>                   
@@ -71,7 +71,7 @@ $counter =  1;
         <ul class="gallery">
             <!--Item 1-->
            <?php
-            foreach($allListings as $listing)
+            foreach($allListings["Items"] as $listing)
             {
             ?>
             <li>
