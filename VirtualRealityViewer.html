@@ -53,30 +53,6 @@ include_once($projectRoot."/includes/functions.php");
     var clock = new THREE.Clock();
 
     setupRooms();
-    init();
-    setScene(rooms[9]);
-    animate();
-
-    // $.ajax({ 
-    //     type: "POST",
-    //     url: 'RetrieveRooms.php',
-    //     data:  JSON.stringify({ListingID: "listingID"}),
-    //     contentType: "application/json; charset=utf-8",
-    //     dataType: "json",
-    //     success: successFunc,
-    //     error: errorFunc
-    // });
-
-    // function successFunc(data, status) {
-    //     // var rooms = eval(data);
-    //     alert( "success" );
-    //     console.log(data);
-    // }
-
-    // function errorFunc(e) {
-    //     console.log(e);
-    //     alert("error");
-    // }
 
     function setupRooms(){
 
@@ -92,12 +68,26 @@ include_once($projectRoot."/includes/functions.php");
 
       for(var i = 0; i < roomsTest.length; i++)
       {
-          var imageUrl = "https://s3-us-west-2.amazonaws.com/izerlabshousestorage/" + roomsTest[i]['ImageID']['S'];
-          var r = new Room(roomsTest[i]['RoomID']['S'], imageUrl, roomsTest[i]['Name']['S']);
-
-
-
+          var imageUrl = "https://s3-us-west-2.amazonaws.com/izerlabshousestorage/" + roomsTest[i][0]['ImageID']['S'];
+          var r = new Room(roomsTest[i][0]['RoomID']['S'], imageUrl, roomsTest[i][0]['Name']['S']);
+          for(var j = 0; j < roomsTest[i][1].length; j++)
+          {
+            r.links.push(new RoomLink(roomsTest[i][1][j]["RoomID2"]['S'],roomsTest[i][1][j]["Theta"]['N'],roomsTest[i][1][j]["Phi"]['N']));
+          }
+          for(var j = 0; j < roomsTest[i][2].length; j++)
+          {
+            r.featureBubbles.push(new FeatureBubble(roomsTest[i][2][j]["BubbleID"]['S'], roomsTest[i][2][j]["Theta"]['N'], 
+                                      roomsTest[i][2][j]["Phi"]['N'], roomsTest[i][2][j]["Text"]['S']));
+          }
+          
+          rooms.push(r);
       }
+
+      init();
+      setScene(rooms[0]);
+      animate();
+
+
       },"json");
 
 
@@ -151,76 +141,76 @@ include_once($projectRoot."/includes/functions.php");
       // r3.links.push(new RoomLink(2,153.47,-9.84));
       // rooms.push(r3);
 
-      /********* HOUSE *********/
-      var r0 = new Room(0, "images/foyer.JPG", "Foyer");
-      r0.links.push(new RoomLink(1,165.65,-141.73));
-      r0.links.push(new RoomLink(7,28.24,-170.39));
-      r0.links.push(new RoomLink(8,85.04,138.92));
-      r0.links.push(new RoomLink(5,100.12,-6.263));
+      // /********* HOUSE *********/
+      // var r0 = new Room(0, "images/foyer.JPG", "Foyer");
+      // r0.links.push(new RoomLink(1,165.65,-141.73));
+      // r0.links.push(new RoomLink(7,28.24,-170.39));
+      // r0.links.push(new RoomLink(8,85.04,138.92));
+      // r0.links.push(new RoomLink(5,100.12,-6.263));
 
-      rooms.push(r0);
+      // rooms.push(r0);
 
-      var r1 = new Room(1, "images/diningarea.JPG", "Dinning Area");
-      r1.links.push(new RoomLink(0,16.72,-35.95));
-      r1.links.push(new RoomLink(2,73.83,179.81));
-      r1.links.push(new RoomLink(7,15.78,-172.19));
-      rooms.push(r1);
+      // var r1 = new Room(1, "images/diningarea.JPG", "Dinning Area");
+      // r1.links.push(new RoomLink(0,16.72,-35.95));
+      // r1.links.push(new RoomLink(2,73.83,179.81));
+      // r1.links.push(new RoomLink(7,15.78,-172.19));
+      // rooms.push(r1);
 
-      var r2 = new Room(2, "images/kitchen.JPG", "Kitchen");
-      r2.links.push(new RoomLink(1,105.81,-6.07));
-      r2.links.push(new RoomLink(4,81.215,-178.21));
-      r2.links.push(new RoomLink(3,17.33,-37.18));
-      r2.featureBubbles.push(new FeatureBubble(6,133.50,-87.64, 'Brand new marble counter top'));
-      r2.featureBubbles.push(new FeatureBubble(7,102.46,-175.37, 'Lots of natural light'));
-      rooms.push(r2);
+      // var r2 = new Room(2, "images/kitchen.JPG", "Kitchen");
+      // r2.links.push(new RoomLink(1,105.81,-6.07));
+      // r2.links.push(new RoomLink(4,81.215,-178.21));
+      // r2.links.push(new RoomLink(3,17.33,-37.18));
+      // r2.featureBubbles.push(new FeatureBubble(6,133.50,-87.64, 'Brand new marble counter top'));
+      // r2.featureBubbles.push(new FeatureBubble(7,102.46,-175.37, 'Lots of natural light'));
+      // rooms.push(r2);
 
-      var r3 = new Room(3, "images/livingroom.JPG", "Living Room");
-      r3.links.push(new RoomLink(2,163.71,-177.65));
-      r3.links.push(new RoomLink(7,90.89,-8.67));
-      r3.links.push(new RoomLink(4,90.57,-178.83));
-      r3.featureBubbles.push(new FeatureBubble(4,45.53,-78.81, 'Newly installed hardwood floor'));
-      r3.featureBubbles.push(new FeatureBubble(5,24.35,-130.83, 'Real Fire Place'));
-      rooms.push(r3);
+      // var r3 = new Room(3, "images/livingroom.JPG", "Living Room");
+      // r3.links.push(new RoomLink(2,163.71,-177.65));
+      // r3.links.push(new RoomLink(7,90.89,-8.67));
+      // r3.links.push(new RoomLink(4,90.57,-178.83));
+      // r3.featureBubbles.push(new FeatureBubble(4,45.53,-78.81, 'Newly installed hardwood floor'));
+      // r3.featureBubbles.push(new FeatureBubble(5,24.35,-130.83, 'Real Fire Place'));
+      // rooms.push(r3);
 
-      var r4 = new Room(4, "images/backyard.JPG", "Backyard");
-      r4.links.push(new RoomLink(2,95.32,4.83));
-      r4.links.push(new RoomLink(3,75.79, 4.76));
-      r4.featureBubbles.push(new FeatureBubble(9,154.27,-27.20, 'Spacious outside storage area'));
-      r4.featureBubbles.push(new FeatureBubble(10,86.87,-155.41, 'Spacious backyard'));
-      rooms.push(r4);
+      // var r4 = new Room(4, "images/backyard.JPG", "Backyard");
+      // r4.links.push(new RoomLink(2,95.32,4.83));
+      // r4.links.push(new RoomLink(3,75.79, 4.76));
+      // r4.featureBubbles.push(new FeatureBubble(9,154.27,-27.20, 'Spacious outside storage area'));
+      // r4.featureBubbles.push(new FeatureBubble(10,86.87,-155.41, 'Spacious backyard'));
+      // rooms.push(r4);
 
-      var r5 = new Room(5, "images/frontdoor.JPG", "Frontdoor");
-      r5.links.push(new RoomLink(0,85.41,174.68));
-      r5.links.push(new RoomLink(9,72.07,-1.74));
-      r5.featureBubbles.push(new FeatureBubble(11,168.10,90.03, 'Only one neighbor'));
-      rooms.push(r5);
+      // var r5 = new Room(5, "images/frontdoor.JPG", "Frontdoor");
+      // r5.links.push(new RoomLink(0,85.41,174.68));
+      // r5.links.push(new RoomLink(9,72.07,-1.74));
+      // r5.featureBubbles.push(new FeatureBubble(11,168.10,90.03, 'Only one neighbor'));
+      // rooms.push(r5);
 
-      var r6 = new Room(6, "images/bathroom.JPG", "Bathroom");
-      r6.links.push(new RoomLink(1,174.51,-103.87));
-      r6.featureBubbles.push(new FeatureBubble(1,104.14,-144.05, 'Brand new marble counter tops'));
-      r6.featureBubbles.push(new FeatureBubble(2,53.89,-129.28, 'Automatic toilet washer'));
-      rooms.push(r6);
+      // var r6 = new Room(6, "images/bathroom.JPG", "Bathroom");
+      // r6.links.push(new RoomLink(1,174.51,-103.87));
+      // r6.featureBubbles.push(new FeatureBubble(1,104.14,-144.05, 'Brand new marble counter tops'));
+      // r6.featureBubbles.push(new FeatureBubble(2,53.89,-129.28, 'Automatic toilet washer'));
+      // rooms.push(r6);
 
-      var r7 = new Room(7, "images/hallway.JPG", "Hallway");
-      r7.links.push(new RoomLink(6,3.22,-81.46));
-      r7.links.push(new RoomLink(0,151.39,-7.97));
-      r7.links.push(new RoomLink(3,90.71,-175.89));
-      rooms.push(r7);
+      // var r7 = new Room(7, "images/hallway.JPG", "Hallway");
+      // r7.links.push(new RoomLink(6,3.22,-81.46));
+      // r7.links.push(new RoomLink(0,151.39,-7.97));
+      // r7.links.push(new RoomLink(3,90.71,-175.89));
+      // rooms.push(r7);
 
-      var r8 = new Room(8, "images/secondfloor.JPG", "Second Floor");
-      r8.links.push(new RoomLink(0,102.08,-37.81));
-      rooms.push(r8); 
+      // var r8 = new Room(8, "images/secondfloor.JPG", "Second Floor");
+      // r8.links.push(new RoomLink(0,102.08,-37.81));
+      // rooms.push(r8); 
 
-      var r9 = new Room(9, "images/outsidehouse.JPG", "Outside");
-      r9.links.push(new RoomLink(5,109.65,175.75));
-      r9.featureBubbles.push(new FeatureBubble(3,67.09,172.82, 'Corner house with only one close neighbor'));
-      rooms.push(r9); 
+      // var r9 = new Room(9, "images/outsidehouse.JPG", "Outside");
+      // r9.links.push(new RoomLink(5,109.65,175.75));
+      // r9.featureBubbles.push(new FeatureBubble(3,67.09,172.82, 'Corner house with only one close neighbor'));
+      // rooms.push(r9); 
     }
 
     function setScene(room){
       currentRoom = room;
 
-      var tex = texloader.load(room.image);
+      var tex = THREE.ImageUtils.loadTexture(room.image);
 
       sphere = new THREE.Mesh(
         new THREE.SphereGeometry(100, 60, 60),
@@ -244,7 +234,7 @@ include_once($projectRoot."/includes/functions.php");
       {
         if(room.links[i].linkSprite == null)
         {
-          var texture = new THREE.Texture( generateLinkSprite(rooms[room.links[i].toId].name, false) );
+          var texture = new THREE.Texture( generateLinkSprite(rooms[obtainRoomIndexWithId(room.links[i].toId)].name, false) );
           texture.needsUpdate = true; // important!
           /* Why is this important*/
 
@@ -259,7 +249,7 @@ include_once($projectRoot."/includes/functions.php");
 
         if(room.links[i].HighlightedLinkSprite == null)
         {
-          var texture = new THREE.Texture( generateLinkSprite(rooms[room.links[i].toId].name, true) );
+          var texture = new THREE.Texture( generateLinkSprite(rooms[obtainRoomIndexWithId(room.links[i].toId)].name, true) );
           texture.needsUpdate = true; // important!
           /* Why is this important*/
 
@@ -274,8 +264,8 @@ include_once($projectRoot."/includes/functions.php");
 
 
         var distRadius = 95;
-        var theta = toRadians(room.links[i].theta);
-        var phi = toRadians(room.links[i].phi);
+        var theta = room.links[i].theta;
+        var phi = room.links[i].phi;
 
         var cartesianPosition = sphericalToCartesian(distRadius, theta,phi);
 
@@ -284,6 +274,24 @@ include_once($projectRoot."/includes/functions.php");
         scene.add(room.links[i].linkSprite);
 
       }
+    }
+
+    function obtainRoomIndexWithId(id)
+    {
+      for (var i = rooms.length - 1; i >= 0; i--) {
+        if(rooms[i].id == id)
+        {
+          return i
+        }
+        else
+        {
+          alert("Could not find room with that ID");
+          return -1;
+        }
+      };
+
+
+      obtainRoomIndexWithId(room.links[i].toId)
     }
 
     function addFeatureBubblesToScene(room)
@@ -315,8 +323,8 @@ include_once($projectRoot."/includes/functions.php");
         }
 
         var distRadius = 90;
-        var theta = toRadians(room.featureBubbles[i].theta);
-        var phi = toRadians(room.featureBubbles[i].phi);
+        var theta = room.featureBubbles[i].theta;
+        var phi = room.featureBubbles[i].phi;
 
         var cartesianPosition = sphericalToCartesian(distRadius, theta,phi);
 
@@ -508,7 +516,8 @@ include_once($projectRoot."/includes/functions.php");
       scene = new THREE.Scene();
 
       texloader = new THREE.TextureLoader();
-
+      THREE.ImageUtils.crossOrigin = '';
+      
       camera = new THREE.PerspectiveCamera(90, 1, 0.001, 700);
       camera.position.set(0, 0, 0);
       camera.fov = 90;
@@ -551,9 +560,9 @@ include_once($projectRoot."/includes/functions.php");
       setTimeout(resize, 1);
     }
 
-    function toRadians (angle) {
-      return angle * (Math.PI / 180);
-    }
+    // function toRadians (angle) {
+    //   return angle * (Math.PI / 180);
+    // }
 
     function resize() {
       var width = container.offsetWidth;
@@ -776,7 +785,7 @@ include_once($projectRoot."/includes/functions.php");
       }
 
       sphere.material.map.dispose();
-      var tex = texloader.load(newRoom.image);
+      var tex = THREE.ImageUtils.loadTexture(newRoom.image);
       sphere.material.map = tex;
       sphere.material.map.minFilter = THREE.LinearFilter;
 
