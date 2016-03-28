@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+include_once($projectRoot."/includes/functions.php");
 
 ?>
 
@@ -33,7 +34,8 @@ session_start();
   <script src="js/third-party/threejs/DeviceOrientationControls.js"></script>
   <script src="js/third-party/threejs/OrbitControls.js"></script>
   <script src="js/third-party/threejs/Detector.js"></script> 
-  <script src="js/third-party/threejs/RoomObjs.js"></script>  
+  <script src="js/third-party/threejs/RoomObjs.js"></script> 
+  <script src="Plugins/jQuery/jQuery-2.1.4.min.js"></script> 
 
   <script>
     var camera, scene, renderer;
@@ -46,6 +48,7 @@ session_start();
     var magnificationFactor = 1.4;
     var rooms = [];
     var texloader;
+    var listingID = getCookie("ListingID");
 
     var clock = new THREE.Clock();
 
@@ -54,7 +57,66 @@ session_start();
     setScene(rooms[9]);
     animate();
 
+    // $.ajax({ 
+    //     type: "POST",
+    //     url: 'RetrieveRooms.php',
+    //     data:  JSON.stringify({ListingID: "listingID"}),
+    //     contentType: "application/json; charset=utf-8",
+    //     dataType: "json",
+    //     success: successFunc,
+    //     error: errorFunc
+    // });
+
+    // function successFunc(data, status) {
+    //     // var rooms = eval(data);
+    //     alert( "success" );
+    //     console.log(data);
+    // }
+
+    // function errorFunc(e) {
+    //     console.log(e);
+    //     alert("error");
+    // }
+
     function setupRooms(){
+
+      var data = {};
+      var roomsTest;
+      data['ListingID'] = listingID;
+
+      $.post("RetrieveRooms.php", data)
+      .done(function(retData) {
+        roomsTest = JSON.parse(retData);
+        console.log(roomsTest);
+
+
+      for(var i = 0; i < roomsTest.length; i++)
+      {
+          var imageUrl = "https://s3-us-west-2.amazonaws.com/izerlabshousestorage/" + roomsTest[i]['ImageID']['S'];
+          var r = new Room(roomsTest[i]['RoomID']['S'], imageUrl, roomsTest[i]['Name']['S']);
+
+
+
+      }
+      },"json");
+
+
+      // $.ajax({ type: "POST",   
+      //          url: "RetrieveRooms.php", 
+      //          data: "ListingID=" + listingID, 
+      //          async: false,
+      //          success : function(result)
+      //          {
+      //              var rooms = eval(result);
+      //              console.log( "success" );
+      //          }
+      // });
+      // var roomId = 0;
+      // var rooms = getListingRooms(listingID);
+      // for(i = 0; i < rooms.length; i++)
+      // {
+      //     var r0 = new Room(roomId, );
+      // }
       // var r0 = new Room(0, "photosphere.jpg");
       // r0.links.push(new RoomLink(1,0,0));
       // r0.links.push(new RoomLink(1,50,0));
