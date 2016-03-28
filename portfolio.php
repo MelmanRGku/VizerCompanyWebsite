@@ -128,7 +128,7 @@ function getCookie(cname) {
                         echo '<div class="desc">';
                         echo "<h5>".$listing["Address"]["S"]."</h5>";
                         echo "<small>".$listing["City"]["S"]."</small>";
-                        echo '<h6><a class="btn btn-transparent" id="button'.$counter.'" value="'.$listing["ListingID"]["S"].'" onclick="retrieveListingID(this)" <a href="http://localhost/VizerCompanyWebsite/VirtualRealityViewer.html">Virtual Reality</a>
+                        echo '<h6><a class="btn btn-transparent" id="button'.$counter.'" value="'.$listing["ListingID"]["S"].'" onclick="retrieveListingID(this)" <a href="http://ec2-52-35-129-61.us-west-2.compute.amazonaws.com/VizerCompanyWebsite/VirtualRealityViewer.html">Virtual Reality</a>
                         <a href="http://ec2-52-35-129-61.us-west-2.compute.amazonaws.com/VizerVR/cardboard2/prototype1.html" class="btn btn-transparent">Desktop Touring</a></h6>';
                         echo "</div>";
                       ?>
