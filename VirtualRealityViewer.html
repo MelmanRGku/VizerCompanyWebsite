@@ -1,0 +1,870 @@
+<?php
+
+session_start();
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Vizer Prototype</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+ <style>
+      body {
+        margin: 0px;
+        overflow: hidden;
+      }
+      #example {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+    </style> 
+  </head>
+  <body>
+    <div id="example"></div>
+
+
+  <script src="js/third-party/threejs/three.js"></script>
+  <script src="js/third-party/threejs/StereoEffect.js"></script>
+  <script src="js/third-party/threejs/DeviceOrientationControls.js"></script>
+  <script src="js/third-party/threejs/OrbitControls.js"></script>
+  <script src="js/third-party/threejs/Detector.js"></script> 
+  <script src="js/third-party/threejs/RoomObjs.js"></script>  
+
+  <script>
+    var camera, scene, renderer;
+    var effect, controls;
+    var element, container;
+    var sphere;
+    var selectedLink = null;
+    var selectedFeatureBubble = null;
+    var currentRoom = null;
+    var magnificationFactor = 1.4;
+    var rooms = [];
+    var texloader;
+
+    var clock = new THREE.Clock();
+
+    setupRooms();
+    init();
+    setScene(rooms[9]);
+    animate();
+
+    function setupRooms(){
+      // var r0 = new Room(0, "photosphere.jpg");
+      // r0.links.push(new RoomLink(1,0,0));
+      // r0.links.push(new RoomLink(1,50,0));
+      // r0.links.push(new RoomLink(1,100,0));
+      // r0.links.push(new RoomLink(1,170.53,16.64));
+      // // r0.links.push(new RoomLink(1,20,0));
+      // // r0.links.push(new RoomLink(1,20,0));
+      // rooms.push(r0);
+
+      // var r1 = new Room(1, "photosphere2.jpg");
+      // r1.links.push(new RoomLink(0,0,0));
+      // rooms.push(r1);
+
+      /********* BASEMENT *********/
+      // var r0 = new Room(0, "images/basement0.JPG");
+      // r0.links.push(new RoomLink(1,90.14,-5.48));
+      // r0.links.push(new RoomLink(2,62.68,-2.17));
+      // rooms.push(r0);
+
+      // var r1 = new Room(1, "images/basement1.JPG");
+      // r1.links.push(new RoomLink(0,85.23,-173.37));
+      // r1.links.push(new RoomLink(2,45.56,-5.67));
+      // rooms.push(r1);
+
+      // var r2 = new Room(2, "images/basement2.JPG");
+      // r2.links.push(new RoomLink(0,107.77,-176.68));
+      // r2.links.push(new RoomLink(1,135.04,-171.69));
+      // r2.links.push(new RoomLink(3,18.73,-152.78));
+      // rooms.push(r2);
+
+      // var r3 = new Room(3, "images/basement3.JPG");
+      // r3.links.push(new RoomLink(2,153.47,-9.84));
+      // rooms.push(r3);
+
+      /********* HOUSE *********/
+      var r0 = new Room(0, "images/foyer.JPG", "Foyer");
+      r0.links.push(new RoomLink(1,165.65,-141.73));
+      r0.links.push(new RoomLink(7,28.24,-170.39));
+      r0.links.push(new RoomLink(8,85.04,138.92));
+      r0.links.push(new RoomLink(5,100.12,-6.263));
+
+      rooms.push(r0);
+
+      var r1 = new Room(1, "images/diningarea.JPG", "Dinning Area");
+      r1.links.push(new RoomLink(0,16.72,-35.95));
+      r1.links.push(new RoomLink(2,73.83,179.81));
+      r1.links.push(new RoomLink(7,15.78,-172.19));
+      rooms.push(r1);
+
+      var r2 = new Room(2, "images/kitchen.JPG", "Kitchen");
+      r2.links.push(new RoomLink(1,105.81,-6.07));
+      r2.links.push(new RoomLink(4,81.215,-178.21));
+      r2.links.push(new RoomLink(3,17.33,-37.18));
+      r2.featureBubbles.push(new FeatureBubble(6,133.50,-87.64, 'Brand new marble counter top'));
+      r2.featureBubbles.push(new FeatureBubble(7,102.46,-175.37, 'Lots of natural light'));
+      rooms.push(r2);
+
+      var r3 = new Room(3, "images/livingroom.JPG", "Living Room");
+      r3.links.push(new RoomLink(2,163.71,-177.65));
+      r3.links.push(new RoomLink(7,90.89,-8.67));
+      r3.links.push(new RoomLink(4,90.57,-178.83));
+      r3.featureBubbles.push(new FeatureBubble(4,45.53,-78.81, 'Newly installed hardwood floor'));
+      r3.featureBubbles.push(new FeatureBubble(5,24.35,-130.83, 'Real Fire Place'));
+      rooms.push(r3);
+
+      var r4 = new Room(4, "images/backyard.JPG", "Backyard");
+      r4.links.push(new RoomLink(2,95.32,4.83));
+      r4.links.push(new RoomLink(3,75.79, 4.76));
+      r4.featureBubbles.push(new FeatureBubble(9,154.27,-27.20, 'Spacious outside storage area'));
+      r4.featureBubbles.push(new FeatureBubble(10,86.87,-155.41, 'Spacious backyard'));
+      rooms.push(r4);
+
+      var r5 = new Room(5, "images/frontdoor.JPG", "Frontdoor");
+      r5.links.push(new RoomLink(0,85.41,174.68));
+      r5.links.push(new RoomLink(9,72.07,-1.74));
+      r5.featureBubbles.push(new FeatureBubble(11,168.10,90.03, 'Only one neighbor'));
+      rooms.push(r5);
+
+      var r6 = new Room(6, "images/bathroom.JPG", "Bathroom");
+      r6.links.push(new RoomLink(1,174.51,-103.87));
+      r6.featureBubbles.push(new FeatureBubble(1,104.14,-144.05, 'Brand new marble counter tops'));
+      r6.featureBubbles.push(new FeatureBubble(2,53.89,-129.28, 'Automatic toilet washer'));
+      rooms.push(r6);
+
+      var r7 = new Room(7, "images/hallway.JPG", "Hallway");
+      r7.links.push(new RoomLink(6,3.22,-81.46));
+      r7.links.push(new RoomLink(0,151.39,-7.97));
+      r7.links.push(new RoomLink(3,90.71,-175.89));
+      rooms.push(r7);
+
+      var r8 = new Room(8, "images/secondfloor.JPG", "Second Floor");
+      r8.links.push(new RoomLink(0,102.08,-37.81));
+      rooms.push(r8); 
+
+      var r9 = new Room(9, "images/outsidehouse.JPG", "Outside");
+      r9.links.push(new RoomLink(5,109.65,175.75));
+      r9.featureBubbles.push(new FeatureBubble(3,67.09,172.82, 'Corner house with only one close neighbor'));
+      rooms.push(r9); 
+    }
+
+    function setScene(room){
+      currentRoom = room;
+
+      var tex = texloader.load(room.image);
+
+      sphere = new THREE.Mesh(
+        new THREE.SphereGeometry(100, 60, 60),
+        new THREE.MeshBasicMaterial({
+        map: tex
+      })
+      );
+      /* Why are we applying a linear filter? do texels not map directly to pixels? */
+      sphere.material.map.minFilter = THREE.LinearFilter;
+      
+      sphere.scale.x = -1;
+      scene.add(sphere);
+
+      addLinksToScene(room);
+      addFeatureBubblesToScene(room);
+    }
+
+    function addLinksToScene(room)
+    {
+      for(i = 0; i < room.links.length; i++)
+      {
+        if(room.links[i].linkSprite == null)
+        {
+          var texture = new THREE.Texture( generateLinkSprite(rooms[room.links[i].toId].name, false) );
+          texture.needsUpdate = true; // important!
+          /* Why is this important*/
+
+          /* Can you apply a texture as a texure map itself?*/
+          var material = new THREE.SpriteMaterial( { map: texture} );
+
+          room.links[i].linkSprite = new THREE.Sprite( material );
+          /* Why scale the sprite link here when you can just increase the size of the canvas */
+          room.links[i].linkSprite.scale.set(20,20,20);
+
+        }
+
+        if(room.links[i].HighlightedLinkSprite == null)
+        {
+          var texture = new THREE.Texture( generateLinkSprite(rooms[room.links[i].toId].name, true) );
+          texture.needsUpdate = true; // important!
+          /* Why is this important*/
+
+          /* Can you apply a texture as a texure map itself?*/
+          var material = new THREE.SpriteMaterial( { map: texture} );
+
+          room.links[i].HighlightedLinkSprite = new THREE.Sprite( material );
+          /* Why scale the sprite link here when you can just increase the size of the canvas */
+          room.links[i].HighlightedLinkSprite.scale.set(30,30,30);
+
+        }
+
+
+        var distRadius = 95;
+        var theta = toRadians(room.links[i].theta);
+        var phi = toRadians(room.links[i].phi);
+
+        var cartesianPosition = sphericalToCartesian(distRadius, theta,phi);
+
+        room.links[i].HighlightedLinkSprite.position.set(cartesianPosition.x,cartesianPosition.y,cartesianPosition.z);
+        room.links[i].linkSprite.position.set(cartesianPosition.x,cartesianPosition.y,cartesianPosition.z);
+        scene.add(room.links[i].linkSprite);
+
+      }
+    }
+
+    function addFeatureBubblesToScene(room)
+    {
+      for(i = 0; i < room.featureBubbles.length; i++)
+      {
+        if(room.featureBubbles[i].backgroundSprite == null)
+        {
+
+          room.featureBubbles[i].backgroundSprite = generateFeatureBubbleBackground(room.featureBubbles[i].informationText);
+          /* Why scale the sprite link here when you can just increase the size of the canvas */
+          // console.log("scale x: " + room.featureBubbles[i].backgroundSprite.scale.x + " scale y: " + room.featureBubbles[i].backgroundSprite.scale.y + " scale z: " + room.featureBubbles[i].backgroundSprite.scale.z);
+          room.featureBubbles[i].backgroundSprite.scale.set(30,30,30);
+          //  console.log("scale x after: " + room.featureBubbles[i].backgroundSprite.scale.x + " scale y after: " + room.featureBubbles[i].backgroundSprite.scale.y + " scale z after: " + room.featureBubbles[i].backgroundSprite.scale.z);
+        }
+
+        if(room.featureBubbles[i].indicatorSprite == null)
+        {
+          var texture = new THREE.Texture( generateFeatureBubblePoint() );
+          texture.needsUpdate = true; // important!
+          /* Why is this important*/
+
+          /* Can you apply a texture as a texure map itself?*/
+          var material = new THREE.SpriteMaterial( { map: texture } );
+
+          room.featureBubbles[i].indicatorSprite = new THREE.Sprite( material );
+          /* Why scale the sprite link here when you can just increase the size of the canvas */
+          room.featureBubbles[i].indicatorSprite.scale.set(10,10,10);
+        }
+
+        var distRadius = 90;
+        var theta = toRadians(room.featureBubbles[i].theta);
+        var phi = toRadians(room.featureBubbles[i].phi);
+
+        var cartesianPosition = sphericalToCartesian(distRadius, theta,phi);
+
+        room.featureBubbles[i].backgroundSprite.position.set(cartesianPosition.x,cartesianPosition.y,cartesianPosition.z);
+        room.featureBubbles[i].indicatorSprite.position.set(cartesianPosition.x,cartesianPosition.y,cartesianPosition.z);
+        scene.add(room.featureBubbles[i].indicatorSprite); 
+      }
+    }
+
+    function generateLinkSprite(roomName, isHighlighted)
+    {
+      var canvas = document.createElement( 'canvas' );
+      canvas.width = 512;
+      canvas.height = 512;
+      var context = canvas.getContext( '2d' );
+
+      var width    = 400;
+      var height   = 100;
+      var arrowW   = 0.20 * width;
+      var arrowH   = 0.75 * height;
+      var p1       = {x: (width-arrowW)/2,              y: arrowH};
+      var p2       = {x: (width-arrowW)/2, y: (height-arrowH)*2};
+      var p3       = {x: width/3, y: (height - arrowH)*2};
+      var p4       = {x: width/2,          y: 0};
+      var p5       = {x: width * (2/3), y: (height-arrowH)*2};
+      var p6       = {x: width-((width-arrowW)/2), y: (height-arrowH)*2};
+      var p7       = {x: width-((width-arrowW)/2),              y: arrowH};
+
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.fillStyle = '#F0C400';
+
+      var fontface = "Arial";
+      var fontsize = 36;
+      var textColor = { r:0, g:0, b:0, a:1.0 };
+      var borderThickness;
+      var borderColor;
+      var backgroundColor = { r:255, g:255, b:255, a:0.8 };
+
+      if(isHighlighted)
+      {
+        borderColor = { r:255, g:0, b:0, a:1.0 };
+        borderThickness = 10;
+      }
+      else
+      {
+        borderColor = { r:0, g:0, b:0, a:1.0 };
+        borderThickness = 4;
+      }
+
+      context.beginPath();
+
+      context.moveTo(p1.x, p1.y);
+      context.lineTo(p2.x, p2.y); // end of main block
+      context.lineTo(p3.x, p3.y); // topmost point     
+      context.lineTo(p4.x, p4.y); // endpoint 
+      context.lineTo(p5.x, p5.y); // bottommost point 
+      context.lineTo(p6.x, p6.y); // end at bottom point 
+      context.lineTo(p7.x, p7.y);
+      context.closePath();
+      context.fill();
+      context.lineWidth = borderThickness;
+      context.strokeStyle = "rgba(" + borderColor.r + "," + borderColor.g + "," + borderColor.b + "," + borderColor.a + ")";
+      context.stroke();
+
+        context.font = "Bold " + fontsize + "px " + fontface;
+        var maxWidth = 256;
+
+        var metrics = context.measureText( roomName );
+        var textWidth = metrics.width;
+
+        context.fillStyle   = "rgba(" + backgroundColor.r + "," + backgroundColor.g + "," + backgroundColor.b + "," + backgroundColor.a + ")";
+        context.strokeStyle = "rgba(" + borderColor.r + "," + borderColor.g + "," + borderColor.b + "," + borderColor.a + ")";
+
+        context.lineWidth = borderThickness;
+        roundRect(context,  ((width/2) -(textWidth/2)) - borderThickness, arrowH + borderThickness, (textWidth + borderThickness) * 1.1, fontsize * 1.6 + borderThickness, 8);
+
+        context.fillStyle = "rgba("+textColor.r+", "+textColor.g+", "+textColor.b+", 1.0)";
+        wrapText(context, roomName, ((width/2) -(textWidth/2)) - borderThickness + 5, (fontsize) + arrowH + borderThickness, maxWidth, fontsize + 10);
+
+      return canvas; 
+    }
+
+    function generateFeatureBubblePoint()
+    {
+      var canvas = document.createElement( 'canvas' );
+      canvas.width = 256;
+      canvas.height = 256;
+
+      var context = canvas.getContext( '2d' );
+
+      var centerX = canvas.width / 2;
+      var centerY = canvas.height / 2;
+      var radius = 50;
+
+      context.beginPath();
+      context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+      context.fillStyle = '#26FF26';
+      context.fill();
+      context.lineWidth = 10;
+      context.strokeStyle = '#000000'; 
+      context.stroke();
+
+      return canvas; 
+    }
+
+    function generateFeatureBubbleBackground(featureText)
+    {
+        var fontface = "Arial";
+        var fontsize = 28;
+        var borderThickness = 4;
+        var borderColor = { r:0, g:0, b:0, a:1.0 };
+        var backgroundColor = { r:255, g:255, b:255, a:0.8 };
+        var textColor = { r:0, g:0, b:0, a:1.0 };
+
+        var canvas = document.createElement('canvas');
+        var context = canvas.getContext('2d');
+        context.font = "Bold " + fontsize + "px " + fontface;
+        var maxWidth = 256;
+
+        var metrics = context.measureText( featureText );
+        var textWidth = metrics.width;
+
+      var numberOfLines = NumberOfLines(context, featureText, (canvas.width - maxWidth) / 2, 60, maxWidth, fontsize + 10);
+      if (numberOfLines > 1) 
+      {
+        textWidth = maxWidth;
+      };
+
+        context.fillStyle   = "rgba(" + backgroundColor.r + "," + backgroundColor.g + "," + backgroundColor.b + "," + backgroundColor.a + ")";
+        context.strokeStyle = "rgba(" + borderColor.r + "," + borderColor.g + "," + borderColor.b + "," + borderColor.a + ")";
+
+        context.lineWidth = borderThickness;
+        roundRect(context, borderThickness/2, borderThickness/2, (textWidth + borderThickness) * 1.1, fontsize * numberOfLines * 1.6 + borderThickness, 8);
+
+        context.fillStyle = "rgba("+textColor.r+", "+textColor.g+", "+textColor.b+", 1.0)";
+        wrapText(context, featureText, borderThickness + 5, (fontsize) + borderThickness, maxWidth, fontsize + 10);
+        // context.fillText( featureText, borderThickness, (fontsize) + borderThickness);
+
+        var texture = new THREE.Texture(canvas) 
+        texture.needsUpdate = true;
+
+        var spriteMaterial = new THREE.SpriteMaterial( { map: texture, useScreenCoordinates: false } );
+        var sprite = new THREE.Sprite( spriteMaterial );
+        sprite.scale.set(0.5 * fontsize, 0.25 * fontsize, 0.75 * fontsize);
+        return sprite;  
+    }
+
+    function sphericalToCartesian(radius, theta, phi)
+    {
+      var xPos = radius * Math.sin(theta) * Math.cos(phi);
+      var yPos = radius * Math.sin(theta) * Math.sin(phi);
+      var zPos = radius * Math.cos(theta);
+
+      return new THREE.Vector3(xPos,yPos,zPos);
+    }
+
+   function keyDownEvent(event)
+    {
+      window.onkeyup = function(e) {
+        var key = e.keyCode ? e.keyCode : e.which;
+        console.log(key);
+
+        if(key == 38)
+        {
+          camera.translateZ( 5 );
+        }
+        else if(key == 40)
+        {
+          camera.translateZ( -5 );
+        }
+        else if(key == 83)
+        {
+          fullscreen();
+        }
+      }
+    }
+
+    function init() {
+
+      renderer = new THREE.WebGLRenderer({ antialiasing: true });
+      renderer.setPixelRatio(window.devicePixelRatio);
+
+      window.onkeydown = keyDownEvent;
+
+      element = renderer.domElement;
+      container = document.getElementById('example');
+      container.appendChild(element);
+
+      scene = new THREE.Scene();
+
+      texloader = new THREE.TextureLoader();
+
+      camera = new THREE.PerspectiveCamera(90, 1, 0.001, 700);
+      camera.position.set(0, 0, 0);
+      camera.fov = 90;
+      scene.add(camera);
+
+      effect = new THREE.StereoEffect(renderer);
+      effect.separation = -2.5;
+      resize();
+
+      controls = new THREE.OrbitControls(camera, element);
+      // controls.rotateUp(Math.PI / 4);
+      controls.target.set(
+        camera.position.x - 0.1,
+        camera.position.y,
+        camera.position.z 
+      );
+      controls.noZoom = true;
+      controls.noPan = true;
+
+      element.addEventListener('click', clickEvent, false);
+      element.addEventListener('touchdown', clickEvent, false);
+
+      function setOrientationControls(e) {
+        if (!e.alpha) {
+          return;
+        }
+
+        controls = new THREE.DeviceOrientationControls(camera, true);
+        controls.connect();
+        controls.update();
+
+        element.addEventListener('click', clickEvent, false);
+
+        window.removeEventListener('deviceorientation', setOrientationControls, true);
+      }
+
+      window.addEventListener('deviceorientation', setOrientationControls, true);
+
+      window.addEventListener('resize', resize, false);
+      setTimeout(resize, 1);
+    }
+
+    function toRadians (angle) {
+      return angle * (Math.PI / 180);
+    }
+
+    function resize() {
+      var width = container.offsetWidth;
+      var height = container.offsetHeight;
+
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+
+      renderer.setSize(width, height);
+      // effect.setSize(width, height);
+      effect.setSize( width, height );
+    }
+
+    function update(dt) {
+      resize();
+
+      camera.updateProjectionMatrix();
+
+      controls.update(dt);
+    }
+
+    function render(dt) {
+      // renderer.render(scene,camera);
+      effect.render(scene, camera);
+    }
+
+    function animate(t) {
+      requestAnimationFrame(animate);
+
+      highlightLinks();
+      highlightIndicators();
+
+      update(clock.getDelta());
+      render(clock.getDelta());
+    }
+
+    function highlightLinks()
+    {
+      var closestLink = null;
+      var closestLinkDotP = 0;
+
+      var cameraLookatVec = new THREE.Vector3( 0, 0, -1 );
+      cameraLookatVec.applyQuaternion( camera.quaternion );
+      cameraLookatVec.normalize();
+
+      if(currentRoom == null)
+        return;
+
+      for(i = 0; i  < currentRoom.links.length; i++)
+      {
+        var circlePos = currentRoom.links[i].linkSprite.position.clone();
+        circlePos.normalize();
+
+        var dotP = cameraLookatVec.dot(circlePos);
+
+        if(dotP > closestLinkDotP)
+        {
+          closestLinkDotP = dotP;
+          closestLink = currentRoom.links[i];
+        }
+      }
+
+      if(closestLinkDotP < 0.95)
+      {
+        dehighlightLinkSprite(selectedLink);
+        selectedLink = null;
+      }
+      else if(closestLink != selectedLink)
+      {
+        dehighlightLinkSprite(selectedLink);
+        selectedLink = closestLink;
+        highlightLinkSprite(selectedLink);
+      }
+
+    }
+
+    function highlightIndicators()
+    {
+      var closestLink = null;
+      var closestLinkDotP = 0;
+
+      var cameraLookatVec = new THREE.Vector3( 0, 0, -1 );
+      cameraLookatVec.applyQuaternion( camera.quaternion );
+      cameraLookatVec.normalize();
+
+      if(currentRoom == null)
+        return;
+
+      for(i = 0; i  < currentRoom.featureBubbles.length; i++)
+      {
+        var circlePos = currentRoom.featureBubbles[i].indicatorSprite.position.clone();
+        circlePos.normalize();
+
+        var dotP = cameraLookatVec.dot(circlePos);
+
+        if(dotP > closestLinkDotP)
+        {
+          closestLinkDotP = dotP;
+          closestLink = currentRoom.featureBubbles[i];
+        }
+      }
+
+      if(closestLinkDotP < 0.95)
+      {
+        dehighlightIndicator(selectedFeatureBubble);
+        selectedFeatureBubble = null;
+      }
+      else if(closestLink != selectedFeatureBubble)
+      {
+        dehighlightIndicator(selectedFeatureBubble);
+        selectedFeatureBubble = closestLink;
+        highlightIndicator(selectedFeatureBubble);
+      }
+
+    }
+
+    function highlightLinkSprite(link)
+    {
+      if(link != null){
+        scene.remove(link.linkSprite);
+        scene.add(link.HighlightedLinkSprite); 
+      }
+    }
+
+    function dehighlightLinkSprite(link)
+    {
+      if(link != null){
+        scene.remove(link.HighlightedLinkSprite);
+        scene.add(link.linkSprite); 
+      }
+    }
+
+    function highlightIndicator(featurebubble)
+    {
+      if(featurebubble != null)
+      {
+        scene.remove(featurebubble.indicatorSprite);
+        scene.add(featurebubble.backgroundSprite); 
+      }        
+    }
+
+    function dehighlightIndicator(featurebubble)
+    {
+      if(featurebubble != null)
+      {
+        scene.remove(featurebubble.backgroundSprite);
+        scene.add(featurebubble.indicatorSprite);
+      }
+    }
+
+    function clickEvent()
+    {
+
+      if(selectedLink != null)
+      {
+        dehighlightLinkSprite(selectedLink);
+        // clearScene();
+        // currentRoom = null;
+        // setScene(rooms[selectedLink.toId]);
+        switchRooms(rooms[selectedLink.toId]);
+        selectedLink = null;
+      }
+      else
+      {
+        fullscreen();
+      }
+    }
+
+    function openFeatureBubble(featurebubble)
+    {
+      if(featurebubble.isOpen)
+      {
+        scene.remove(featurebubble.indicatorSprite);
+        scene.add(featurebubble.backgroundSprite); 
+        featurebubble.isOpen = false;
+      }
+      else
+      {
+        scene.remove(featurebubble.backgroundSprite);
+        scene.add(featurebubble.indicatorSprite); 
+        featurebubble.isOpen = true;
+      }
+    }
+
+    function fullscreen() {
+      if (container.requestFullscreen) {
+        container.requestFullscreen();
+      } else if (container.msRequestFullscreen) {
+        container.msRequestFullscreen();
+      } else if (container.mozRequestFullScreen) {
+        container.mozRequestFullScreen();
+      } else if (container.webkitRequestFullscreen) {
+        container.webkitRequestFullscreen();
+      } 
+    }
+
+    function switchRooms(newRoom)
+    {
+      //remove old links
+      for(i = 0; i < currentRoom.links.length; i++)
+      { 
+        scene.remove(currentRoom.links[i].linkSprite);
+        currentRoom.links[i].linkSprite.geometry.dispose();  
+        currentRoom.links[i].linkSprite.material.map.dispose();
+        currentRoom.links[i].linkSprite.material.dispose(); 
+      }
+
+      // Remove old feature bubbles
+      for(i = 0; i < currentRoom.featureBubbles.length; i++)
+      {
+        scene.remove(currentRoom.featureBubbles[i].backgroundSprite);
+        currentRoom.featureBubbles[i].backgroundSprite.geometry.dispose();
+        currentRoom.featureBubbles[i].backgroundSprite.material.map.dispose();
+        currentRoom.featureBubbles[i].backgroundSprite.material.dispose();
+
+        scene.remove(currentRoom.featureBubbles[i].indicatorSprite);
+        currentRoom.featureBubbles[i].indicatorSprite.geometry.dispose();
+        currentRoom.featureBubbles[i].indicatorSprite.material.map.dispose();
+        currentRoom.featureBubbles[i].indicatorSprite.material.dispose();
+      }
+
+      sphere.material.map.dispose();
+      var tex = texloader.load(newRoom.image);
+      sphere.material.map = tex;
+      sphere.material.map.minFilter = THREE.LinearFilter;
+
+      addFeatureBubblesToScene(newRoom);
+      addLinksToScene(newRoom);
+
+      currentRoom = newRoom;
+    }
+
+    function clearScene()
+    {
+      scene.remove(sphere);
+      sphere.material.map.dispose();
+      sphere.material.dispose();
+      sphere.geometry.dispose();
+
+      for(i = 0; i < currentRoom.links.length; i++)
+      { 
+        scene.remove(currentRoom.links[i].linkSprite);
+        currentRoom.links[i].linkSprite.geometry.dispose();  
+        currentRoom.links[i].linkSprite.material.map.dispose();
+        currentRoom.links[i].linkSprite.material.dispose();  
+      }
+    }
+
+    function makeTextSprite( message, parameters )
+    {
+        if ( parameters === undefined ) parameters = {};
+        var fontface = parameters.hasOwnProperty("fontface") ? parameters["fontface"] : "Arial";
+        var fontsize = parameters.hasOwnProperty("fontsize") ? parameters["fontsize"] : 18;
+        var borderThickness = parameters.hasOwnProperty("borderThickness") ? parameters["borderThickness"] : 4;
+        var borderColor = parameters.hasOwnProperty("borderColor") ?parameters["borderColor"] : { r:0, g:0, b:0, a:1.0 };
+        var backgroundColor = parameters.hasOwnProperty("backgroundColor") ?parameters["backgroundColor"] : { r:255, g:255, b:255, a:1.0 };
+        var textColor = parameters.hasOwnProperty("textColor") ?parameters["textColor"] : { r:0, g:0, b:0, a:1.0 };
+
+        var canvas = document.createElement('canvas');
+        var context = canvas.getContext('2d');
+        context.font = "Bold " + fontsize + "px " + fontface;
+        var metrics = context.measureText( message );
+        var textWidth = metrics.width;
+
+        context.fillStyle   = "rgba(" + backgroundColor.r + "," + backgroundColor.g + "," + backgroundColor.b + "," + backgroundColor.a + ")";
+        context.strokeStyle = "rgba(" + borderColor.r + "," + borderColor.g + "," + borderColor.b + "," + borderColor.a + ")";
+
+        context.lineWidth = borderThickness;
+        roundRect(context, borderThickness/2, borderThickness/2, (textWidth + borderThickness) * 1.1, fontsize * 1.4 + borderThickness, 8);
+
+        context.fillStyle = "rgba("+textColor.r+", "+textColor.g+", "+textColor.b+", 1.0)";
+        context.fillText( message, borderThickness, fontsize + borderThickness);
+
+        var texture = new THREE.Texture(canvas) 
+        texture.needsUpdate = true;
+
+        var spriteMaterial = new THREE.SpriteMaterial( { map: texture, useScreenCoordinates: false } );
+        var sprite = new THREE.Sprite( spriteMaterial );
+        sprite.scale.set(0.5 * fontsize, 0.25 * fontsize, 0.75 * fontsize);
+        return sprite;  
+    }
+
+    function roundRect(ctx, x, y, w, h, r) { 
+      ctx.beginPath(); ctx.moveTo(x + r, y); 
+      ctx.lineTo(x + w - r, y); 
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      ctx.lineTo(x + r, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - r); ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      // ctx.fillStyle = "rgba(127, 255, 0, 0.5)";
+      // ctx.fill();
+      // ctx.lineWidth = 2.5;
+      // ctx.strokeStyle = '#000000'; 
+      ctx.closePath(); ctx.fill(); ctx.stroke(); 
+    }
+
+    function wrapText(context, text, x, y, maxWidth, lineHeight) 
+    {
+        var words = text.split(' ');
+        var line = '';
+
+        for(var n = 0; n < words.length; n++) 
+        {
+          var testLine = line + words[n] + ' ';
+          var metrics = context.measureText(testLine);
+          var testWidth = metrics.width;
+
+          if (testWidth > maxWidth && n > 0) 
+          {
+            context.fillText(line, x, y);
+            line = words[n] + ' ';
+            y += lineHeight;
+          }
+          else 
+          {
+            line = testLine;
+          }
+        }
+        context.fillText(line, x, y);
+    }
+
+
+    function NumberOfLines(context, text, x, y, maxWidth, lineHeight) 
+    {
+        var words = text.split(' ');
+        var line = '';
+        var numberoflines = 1;
+
+        for(var n = 0; n < words.length; n++) 
+        {
+          var testLine = line + words[n] + ' ';
+          var metrics = context.measureText(testLine);
+          var testWidth = metrics.width;
+
+          if (testWidth > maxWidth && n > 0) 
+          {
+            line = words[n] + ' ';
+            y += lineHeight;
+            numberoflines = numberoflines + 1;
+          }
+          else 
+          {
+            line = testLine;
+          }
+        }
+
+        return numberoflines;
+    }
+
+function canvas_arrow(context, fromx, fromy, tox, toy)
+{
+    var headlen = 500;   // length of head in pixels
+    var angle = Math.atan2(toy-fromy,tox-fromx);
+    context.moveTo(fromx, fromy);
+    context.lineTo(tox, toy);
+    context.lineTo(tox-headlen*Math.cos(angle-Math.PI/6),toy-headlen*Math.sin(angle-Math.PI/6));
+    context.moveTo(tox, toy);
+    context.lineTo(tox-headlen*Math.cos(angle+Math.PI/6),toy-headlen*Math.sin(angle+Math.PI/6));
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    }
+    return "";
+}
+
+  </script>
+  </body>
+</html>
