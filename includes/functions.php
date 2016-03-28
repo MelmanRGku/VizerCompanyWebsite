@@ -255,8 +255,6 @@ function getListingAll($id)
     $sdkConn = getDBConnection();
     $dynamodb = $sdkConn->createDynamoDb();
 
-    $returnArr = [];
-
     $iterator = $dynamodb->query(array( 
         'TableName'     => 'Room',
         'IndexName'     => 'ListingID-index',
@@ -304,9 +302,7 @@ function getListingAll($id)
         array_push($roomsArray, $roomBlock);
     }
 
-    array_push($returnArr, $roomsArray);
-
-    return $returnArr;
+    return $roomsArray;
 }
 
 function uploadImage($imageAddrs, $imgID)
