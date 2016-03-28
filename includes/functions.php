@@ -250,6 +250,65 @@ function getRoomBubbles($id)
     return $returnArr;
 }
 
+function getListingAll($id)
+{
+    $sdkConn = getDBConnection();
+    $dynamodb = $sdkConn->createDynamoDb();
+
+    $returnArr = [];
+
+    $iterator = $dynamodb->query(array( 
+        'TableName'     => 'Room',
+        'IndexName'     => 'ListingID-index',
+        'KeyConditionExpression' => 'ListingID = :v_id',
+        'ExpressionAttributeValues' =>  [
+        ':v_id' => [
+            'S' => $id]
+        ],
+    ));
+
+    $roomArr = iterator_to_array($iterator);
+    $roomsArray = [];
+
+    foreach($roomArr["Items"] as $room)
+    {
+        $iterator = $dynamodb->query(array( 
+            'TableName'     => 'Link',
+            'IndexName'     => 'RoomID1-index',
+            'KeyConditionExpression' => 'RoomID1 = :v_id',
+            'ExpressionAttributeValues' =>  [
+            ':v_id' => [
+                'S' => $room["RoomID"]["S"]]
+            ],
+        ));
+
+        $linkArr = iterator_to_array($iterator);
+
+        $iterator = $dynamodb->query(array( 
+            'TableName'     => 'FeatureBubble',
+            'IndexName'     => 'RoomID-index',
+            'KeyConditionExpression' => 'RoomID = :v_id',
+            'ExpressionAttributeValues' =>  [
+            ':v_id' => [
+                'S' => $room["RoomID"]["S"]]
+            ],
+        ));
+
+        $bubbleArr = iterator_to_array($iterator);
+
+        $roomBlock = [];
+        array_push($roomBlock, $room);
+        array_push($roomBlock, $linkArr["Items"]);
+        array_push($roomBlock, $bubbleArr["Items"]);
+
+        array_push($roomsArray, $roomBlock);
+    }
+
+    array_push($returnArr, $roomsArray);
+
+    return $returnArr;
+}
+
 function uploadImage($imageAddrs, $imgID)
 {
 	$sdkConn = getS3Connection();
