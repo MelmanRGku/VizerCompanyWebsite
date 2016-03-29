@@ -59,18 +59,18 @@
         // console.log(roomsTest);
 
 
-      for(var i = 0; i < roomsTest.length; i++)
+      for(var i = 0; i < roomsTest[1].length; i++)
       {
-          var imageUrl = "https://s3-us-west-2.amazonaws.com/izerlabshousestorage/" + roomsTest[i][0]['ImageID']['S'];
-          var r = new Room(roomsTest[i][0]['RoomID']['S'], imageUrl, roomsTest[i][0]['Name']['S']);
-          for(var j = 0; j < roomsTest[i][1].length; j++)
+          var imageUrl = "https://s3-us-west-2.amazonaws.com/izerlabshousestorage/" + roomsTest[1][i][0]['ImageID']['S'];
+          var r = new Room(roomsTest[1][i][0]['RoomID']['S'], imageUrl, roomsTest[1][i][0]['Name']['S']);
+          for(var j = 0; j < roomsTest[1][i][1].length; j++)
           {
-            r.links.push(new RoomLink(roomsTest[i][1][j]["RoomID2"]['S'],roomsTest[i][1][j]["Phi"]['N'], roomsTest[i][1][j]["Theta"]['N']));
+            r.links.push(new RoomLink(roomsTest[1][i][1][j]["RoomID2"]['S'],roomsTest[1][i][1][j]["Phi"]['N'], roomsTest[1][i][1][j]["Theta"]['N']));
           }
-          for(var j = 0; j < roomsTest[i][2].length; j++)
+          for(var j = 0; j < roomsTest[1][i][2].length; j++)
           {
-            r.featureBubbles.push(new FeatureBubble(roomsTest[i][2][j]["BubbleID"]['S'], roomsTest[i][2][j]["Phi"]['N'], 
-                                      roomsTest[i][2][j]["Theta"]['N'], roomsTest[i][2][j]["Text"]['S']));
+            r.featureBubbles.push(new FeatureBubble(roomsTest[1][i][2][j]["BubbleID"]['S'], roomsTest[1][i][2][j]["Phi"]['N'], 
+                                      roomsTest[1][i][2][j]["Theta"]['N'], roomsTest[1][i][2][j]["Text"]['S']));
           }
           rooms.push(r);
       }
@@ -78,7 +78,7 @@
       // console.log(rooms);
 
       init();
-      setScene(rooms[0]);
+      setScene(rooms[obtainRoomIndexWithId(roomsTest[0])]);
       animate();
 
 
