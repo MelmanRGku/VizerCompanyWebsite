@@ -65,12 +65,12 @@
           var r = new Room(roomsTest[i][0]['RoomID']['S'], imageUrl, roomsTest[i][0]['Name']['S']);
           for(var j = 0; j < roomsTest[i][1].length; j++)
           {
-            r.links.push(new RoomLink(roomsTest[i][1][j]["RoomID2"]['S'],roomsTest[i][1][j]["Theta"]['N'],roomsTest[i][1][j]["Phi"]['N']));
+            r.links.push(new RoomLink(roomsTest[i][1][j]["RoomID2"]['S'],roomsTest[i][1][j]["Phi"]['N'], roomsTest[i][1][j]["Theta"]['N']));
           }
           for(var j = 0; j < roomsTest[i][2].length; j++)
           {
-            r.featureBubbles.push(new FeatureBubble(roomsTest[i][2][j]["BubbleID"]['S'], roomsTest[i][2][j]["Theta"]['N'], 
-                                      roomsTest[i][2][j]["Phi"]['N'], roomsTest[i][2][j]["Text"]['S']));
+            r.featureBubbles.push(new FeatureBubble(roomsTest[i][2][j]["BubbleID"]['S'], roomsTest[i][2][j]["Phi"]['N'], 
+                                      roomsTest[i][2][j]["Theta"]['N'], roomsTest[i][2][j]["Text"]['S']));
           }
           console.log("here");
           rooms.push(r);
