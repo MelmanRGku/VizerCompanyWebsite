@@ -70,11 +70,7 @@
                     </li>
                     <li>
                         <i class="fa fa-envelope"></i>
-                        contact@IzerLabs.com
-                    </li>
-                    <li>
-                        <i class="fa fa-globe"></i>
-                        www.IzerLabs.com
+                        izerlabs@gmail.com
                     </li>
                 </ul>
             </div>
