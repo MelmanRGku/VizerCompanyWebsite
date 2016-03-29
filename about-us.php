@@ -26,9 +26,9 @@ include_once($projectRoot."/includes/functions.php");
               <ul class="nav navbar-nav">
                             <li><a href="index.php">Home</a></li>
                             <li class="active"><a href="about-us.php">About Us</a></li>
-                            <li><a href="services.php">Services</a></li>
+                           
                             <li><a href="portfolio.php">Browse Homes</a></li>
-                            <li><a href="pricing.php">Pricing</a></li>
+                            
                             <li><a href="contact-us.php">Request a listing</a></li>
                             <?php if(!isset($_SESSION['user'])) : ?>  
                             <li><a href="login.php">Login</a></li>
@@ -106,19 +106,19 @@ include_once($projectRoot."/includes/functions.php");
      <img src="images/Fadi.jpg" alt="" >
       <div class="caption">
         <h4>Fadi Botros</h4>
-        <p>Fourth year software engineering student at the University of Calgary and team leader for Izer Labs.</p>
-         <a class="btn btn-social btn-facebook" href="#"><i class="fa fa-facebook"></i></a> <a class="btn btn-social btn-google-plus" href="#"><i class="fa fa-google-plus"></i></a> <a class="btn btn-social btn-twitter" href="#"><i class="fa fa-twitter"></i></a> <a class="btn btn-social btn-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+        <p>Fourth year software engineering student at the University of Calgary and project manager for Izer Labs.</p>
+        <!-- <a class="btn btn-social btn-facebook" href="#"><i class="fa fa-facebook"></i></a> <a class="btn btn-social btn-google-plus" href="#"><i class="fa fa-google-plus"></i></a> <a class="btn btn-social btn-twitter" href="#"><i class="fa fa-twitter"></i></a> <a class="btn btn-social btn-linkedin" href="#"><i class="fa fa-linkedin"></i></a>-->
       </div>
     </div>
   </div>
 
             <div class="col-sm-6 col-md-3">
     <div class="thumbnail">
-     <img src="images/Katherine.jpg" alt="" >
+     <img src="images/Katherine.JPG" alt="" >
       <div class="caption">
         <h4>Katherine Juhasz</h4>
         <p>Fourth year electrical engineering student at the University of Calgary.</p>
-          <a class="btn btn-social btn-facebook" href="#"><i class="fa fa-facebook"></i></a> <a class="btn btn-social btn-google-plus" href="#"><i class="fa fa-google-plus"></i></a> <a class="btn btn-social btn-twitter" href="#"><i class="fa fa-twitter"></i></a> <a class="btn btn-social btn-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+          
       </div>
     </div>
   </div>
@@ -129,7 +129,7 @@ include_once($projectRoot."/includes/functions.php");
       <div class="caption">
         <h4>Melvin Rodriguez</h4>
         <p>Fourth year software engineering student at the University of Calgary.</p>
-         <a class="btn btn-social btn-facebook" href="#"><i class="fa fa-facebook"></i></a> <a class="btn btn-social btn-google-plus" href="#"><i class="fa fa-google-plus"></i></a> <a class="btn btn-social btn-twitter" href="#"><i class="fa fa-twitter"></i></a> <a class="btn btn-social btn-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+         
       </div>
     </div>
   </div>
@@ -139,7 +139,7 @@ include_once($projectRoot."/includes/functions.php");
       <div class="caption">
         <h4>Matthew Howitt</h4>
         <p>Fourth year software engineering student at the University of Calgary.</p>
-         <a class="btn btn-social btn-facebook" href="#"><i class="fa fa-facebook"></i></a> <a class="btn btn-social btn-google-plus" href="#"><i class="fa fa-google-plus"></i></a> <a class="btn btn-social btn-twitter" href="#"><i class="fa fa-twitter"></i></a> <a class="btn btn-social btn-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+         
       </div>
     </div>
   </div>

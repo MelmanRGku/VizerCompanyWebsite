@@ -29,9 +29,9 @@ if(isset($_SESSION['user'])) {
               <ul class="nav navbar-nav">
                             <li><a href="index.php">Home</a></li>
                             <li><a href="about-us.php">About Us</a></li>
-                            <li><a href="services.php">Services</a></li>
+                            
                             <li><a href="portfolio.php">Browse Homes</a></li>
-                            <li><a href="pricing.php">Pricing</a></li>
+                            
                             <li class="active"><a href="contact-us.php">Request a Listing</a></li>
                             <?php if(!isset($_SESSION['user'])) : ?> 
                             <li><a href="login.php">Login</a></li>
@@ -65,7 +65,7 @@ if(isset($_SESSION['user'])) {
     <!-- / .title -->  
     <section id="contact-page" class="container">
 	 <div class="head-title">
-            <h2>Want to stand out from the crowd? Start your virtual toruing service today!</h2>
+            <h2>Want to stand out from the crowd? Start your virtual touring service today!</h2>
             <p class="lead">Request a house scan</p>
         </div>
         <div class="row">
@@ -88,7 +88,7 @@ if(isset($_SESSION['user'])) {
                     </li>
                     <li>
                         <i class="fa fa-phone"></i>
-                        555-Taco
+                        403-555-IZER
                     </li>
                 </ul>
         </div>
@@ -142,7 +142,7 @@ if(isset($_SESSION['user'])) {
 
 </section>
  <section class="no-margin">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.294899169211!2d-74.01454923459501!3d40.711524179332095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a19881b83fb%3A0x979b0a4fe0492ce6!2sWorld+Trade+Center%2C+New+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1446220860553" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2506.641736003033!2d-114.1379893845653!3d51.07816324981723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53717db7481cb3b1%3A0x36aff4a9e3c803fb!2sUniversity+of+Calgary!5e0!3m2!1sen!2sca!4v1459198422944!" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
     </section>
 
 <?php
