@@ -390,6 +390,8 @@
       );
       controls.noZoom = true;
       controls.noPan = true;
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.50;
 
       element.addEventListener('click', clickEvent, false);
       element.addEventListener('touchdown', clickEvent, false);
@@ -445,6 +447,7 @@
 
       update(clock.getDelta());
       render(clock.getDelta());
+      controls.update();
     }
 
     function clickEvent()
