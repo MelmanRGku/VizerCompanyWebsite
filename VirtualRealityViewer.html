@@ -104,6 +104,7 @@
 
       addLinksToScene(room);
       addFeatureBubblesToScene(room);
+      cacheImagesOfSubsequentRooms(room);
     }
 
     function addLinksToScene(room)
@@ -667,6 +668,7 @@
       addLinksToScene(newRoom);
 
       currentRoom = newRoom;
+      cacheImagesOfSubsequentRooms(newRoom);
     }
 
     function clearScene()
@@ -808,6 +810,17 @@ function getCookie(cname) {
         if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
     }
     return "";
+}
+
+function cacheImagesOfSubsequentRooms(room)
+{
+  for(i = 0; i < room.links.length; i++)
+  {
+    var nextRoom = rooms[obtainRoomIndexWithId(room.links[i].toId)];
+    var tex = THREE.ImageUtils.loadTexture(nextRoom.image);
+    // var img = new Image();
+    // img.src=nextRoom.image;
+  }
 }
 
   </script>
