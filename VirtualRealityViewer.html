@@ -56,7 +56,7 @@
       $.post("RetrieveRooms.php", data)
       .done(function(retData) {
         roomsTest = JSON.parse(retData);
-        console.log(roomsTest);
+        // console.log(roomsTest);
 
 
       for(var i = 0; i < roomsTest.length; i++)
@@ -72,7 +72,6 @@
             r.featureBubbles.push(new FeatureBubble(roomsTest[i][2][j]["BubbleID"]['S'], roomsTest[i][2][j]["Phi"]['N'], 
                                       roomsTest[i][2][j]["Theta"]['N'], roomsTest[i][2][j]["Text"]['S']));
           }
-          console.log("here");
           rooms.push(r);
       }
 
@@ -109,7 +108,6 @@
 
     function addLinksToScene(room)
     {
-      console.log(rooms);
       for(i = 0; i < room.links.length; i++)
       {
         if(room.links[i].linkSprite == null)
@@ -598,9 +596,6 @@
         // clearScene();
         // currentRoom = null;
         // setScene(rooms[selectedLink.toId]);
-        // var temp = obtainRoomIndexWithId(selectedLink.toId);
-        // console.log(temp);
-        // console.log(rooms);
         switchRooms(rooms[obtainRoomIndexWithId(selectedLink.toId)]);
         selectedLink = null;
       }

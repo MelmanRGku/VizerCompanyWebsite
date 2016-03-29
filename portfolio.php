@@ -18,7 +18,6 @@ function retrieveListingID(objbutton)
 {
     document.cookie="ListingID=" + objbutton.getAttribute('value') + "";
     var x = getCookie("ListingID");
-    alert(x);
     return false;
 }
 
