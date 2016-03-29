@@ -72,9 +72,11 @@
             r.featureBubbles.push(new FeatureBubble(roomsTest[i][2][j]["BubbleID"]['S'], roomsTest[i][2][j]["Theta"]['N'], 
                                       roomsTest[i][2][j]["Phi"]['N'], roomsTest[i][2][j]["Text"]['S']));
           }
-          
+          console.log("here");
           rooms.push(r);
       }
+
+      // console.log(rooms);
 
       init();
       setScene(rooms[0]);
@@ -82,122 +84,6 @@
 
 
       },"json");
-
-
-      // $.ajax({ type: "POST",   
-      //          url: "RetrieveRooms.php", 
-      //          data: "ListingID=" + listingID, 
-      //          async: false,
-      //          success : function(result)
-      //          {
-      //              var rooms = eval(result);
-      //              console.log( "success" );
-      //          }
-      // });
-      // var roomId = 0;
-      // var rooms = getListingRooms(listingID);
-      // for(i = 0; i < rooms.length; i++)
-      // {
-      //     var r0 = new Room(roomId, );
-      // }
-      // var r0 = new Room(0, "photosphere.jpg");
-      // r0.links.push(new RoomLink(1,0,0));
-      // r0.links.push(new RoomLink(1,50,0));
-      // r0.links.push(new RoomLink(1,100,0));
-      // r0.links.push(new RoomLink(1,170.53,16.64));
-      // // r0.links.push(new RoomLink(1,20,0));
-      // // r0.links.push(new RoomLink(1,20,0));
-      // rooms.push(r0);
-
-      // var r1 = new Room(1, "photosphere2.jpg");
-      // r1.links.push(new RoomLink(0,0,0));
-      // rooms.push(r1);
-
-      /********* BASEMENT *********/
-      // var r0 = new Room(0, "images/basement0.JPG");
-      // r0.links.push(new RoomLink(1,90.14,-5.48));
-      // r0.links.push(new RoomLink(2,62.68,-2.17));
-      // rooms.push(r0);
-
-      // var r1 = new Room(1, "images/basement1.JPG");
-      // r1.links.push(new RoomLink(0,85.23,-173.37));
-      // r1.links.push(new RoomLink(2,45.56,-5.67));
-      // rooms.push(r1);
-
-      // var r2 = new Room(2, "images/basement2.JPG");
-      // r2.links.push(new RoomLink(0,107.77,-176.68));
-      // r2.links.push(new RoomLink(1,135.04,-171.69));
-      // r2.links.push(new RoomLink(3,18.73,-152.78));
-      // rooms.push(r2);
-
-      // var r3 = new Room(3, "images/basement3.JPG");
-      // r3.links.push(new RoomLink(2,153.47,-9.84));
-      // rooms.push(r3);
-
-      // /********* HOUSE *********/
-      // var r0 = new Room(0, "images/foyer.JPG", "Foyer");
-      // r0.links.push(new RoomLink(1,165.65,-141.73));
-      // r0.links.push(new RoomLink(7,28.24,-170.39));
-      // r0.links.push(new RoomLink(8,85.04,138.92));
-      // r0.links.push(new RoomLink(5,100.12,-6.263));
-
-      // rooms.push(r0);
-
-      // var r1 = new Room(1, "images/diningarea.JPG", "Dinning Area");
-      // r1.links.push(new RoomLink(0,16.72,-35.95));
-      // r1.links.push(new RoomLink(2,73.83,179.81));
-      // r1.links.push(new RoomLink(7,15.78,-172.19));
-      // rooms.push(r1);
-
-      // var r2 = new Room(2, "images/kitchen.JPG", "Kitchen");
-      // r2.links.push(new RoomLink(1,105.81,-6.07));
-      // r2.links.push(new RoomLink(4,81.215,-178.21));
-      // r2.links.push(new RoomLink(3,17.33,-37.18));
-      // r2.featureBubbles.push(new FeatureBubble(6,133.50,-87.64, 'Brand new marble counter top'));
-      // r2.featureBubbles.push(new FeatureBubble(7,102.46,-175.37, 'Lots of natural light'));
-      // rooms.push(r2);
-
-      // var r3 = new Room(3, "images/livingroom.JPG", "Living Room");
-      // r3.links.push(new RoomLink(2,163.71,-177.65));
-      // r3.links.push(new RoomLink(7,90.89,-8.67));
-      // r3.links.push(new RoomLink(4,90.57,-178.83));
-      // r3.featureBubbles.push(new FeatureBubble(4,45.53,-78.81, 'Newly installed hardwood floor'));
-      // r3.featureBubbles.push(new FeatureBubble(5,24.35,-130.83, 'Real Fire Place'));
-      // rooms.push(r3);
-
-      // var r4 = new Room(4, "images/backyard.JPG", "Backyard");
-      // r4.links.push(new RoomLink(2,95.32,4.83));
-      // r4.links.push(new RoomLink(3,75.79, 4.76));
-      // r4.featureBubbles.push(new FeatureBubble(9,154.27,-27.20, 'Spacious outside storage area'));
-      // r4.featureBubbles.push(new FeatureBubble(10,86.87,-155.41, 'Spacious backyard'));
-      // rooms.push(r4);
-
-      // var r5 = new Room(5, "images/frontdoor.JPG", "Frontdoor");
-      // r5.links.push(new RoomLink(0,85.41,174.68));
-      // r5.links.push(new RoomLink(9,72.07,-1.74));
-      // r5.featureBubbles.push(new FeatureBubble(11,168.10,90.03, 'Only one neighbor'));
-      // rooms.push(r5);
-
-      // var r6 = new Room(6, "images/bathroom.JPG", "Bathroom");
-      // r6.links.push(new RoomLink(1,174.51,-103.87));
-      // r6.featureBubbles.push(new FeatureBubble(1,104.14,-144.05, 'Brand new marble counter tops'));
-      // r6.featureBubbles.push(new FeatureBubble(2,53.89,-129.28, 'Automatic toilet washer'));
-      // rooms.push(r6);
-
-      // var r7 = new Room(7, "images/hallway.JPG", "Hallway");
-      // r7.links.push(new RoomLink(6,3.22,-81.46));
-      // r7.links.push(new RoomLink(0,151.39,-7.97));
-      // r7.links.push(new RoomLink(3,90.71,-175.89));
-      // rooms.push(r7);
-
-      // var r8 = new Room(8, "images/secondfloor.JPG", "Second Floor");
-      // r8.links.push(new RoomLink(0,102.08,-37.81));
-      // rooms.push(r8); 
-
-      // var r9 = new Room(9, "images/outsidehouse.JPG", "Outside");
-      // r9.links.push(new RoomLink(5,109.65,175.75));
-      // r9.featureBubbles.push(new FeatureBubble(3,67.09,172.82, 'Corner house with only one close neighbor'));
-      // rooms.push(r9); 
     }
 
     function setScene(room){
@@ -223,11 +109,12 @@
 
     function addLinksToScene(room)
     {
+      console.log(rooms);
       for(i = 0; i < room.links.length; i++)
       {
         if(room.links[i].linkSprite == null)
         {
-          var texture = new THREE.Texture( generateLinkSprite(rooms[obtainRoomIndexWithId(room.links[i].toId)].name, false) );
+          var texture = new THREE.Texture( generateLinkSprite(rooms[obtainRoomIndexWithId(room.links[i].toId)].name, false));
           texture.needsUpdate = true; // important!
           /* Why is this important*/
 
@@ -271,20 +158,16 @@
 
     function obtainRoomIndexWithId(id)
     {
-      for (var i = rooms.length - 1; i >= 0; i--) {
+      for (var i = 0; i < rooms.length; i++) 
+      {
         if(rooms[i].id == id)
         {
           return i
         }
-        else
-        {
-          alert("Could not find room with that ID");
-          return -1;
-        }
-      };
 
-
-      obtainRoomIndexWithId(room.links[i].toId)
+      }
+      alert("Could not find room with that ID");
+      return -1;
     }
 
     function addFeatureBubblesToScene(room)
@@ -715,7 +598,10 @@
         // clearScene();
         // currentRoom = null;
         // setScene(rooms[selectedLink.toId]);
-        switchRooms(rooms[selectedLink.toId]);
+        // var temp = obtainRoomIndexWithId(selectedLink.toId);
+        // console.log(temp);
+        // console.log(rooms);
+        switchRooms(rooms[obtainRoomIndexWithId(selectedLink.toId)]);
         selectedLink = null;
       }
       else
