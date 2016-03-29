@@ -26,7 +26,7 @@ function getDBConnection()
     ],
     'http'    => [
         'verify' => $projectRoot .'includes/awsSDK/ca-bundle.crt'
-        #'verify' => 'C:\wamp\www\VizerCompanyWebsite\includes\awsSDK\ca-bundle.crt'
+        #'verify' => 'C:\wamp\www\ca-bundle.crt'
     ]
     ]);
 
@@ -49,7 +49,7 @@ function getS3Connection()
     ],
     'http'    => [
         'verify' => $projectRoot .'includes/awsSDK/ca-bundle.crt'
-        #'verify' => 'C:\wamp\www\VizerCompanyWebsite\includes\awsSDK\ca-bundle.crt'
+        #'verify' => 'C:\wamp\www\ca-bundle.crt'
     ]
 ]);
 
