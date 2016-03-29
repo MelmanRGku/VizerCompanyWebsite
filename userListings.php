@@ -6,32 +6,9 @@ $projectRoot = "./";
 include_once($projectRoot."/template/header.php");
 include_once($projectRoot."/includes/functions.php");
 
-$allListings =  getAllListings();
+$allListings =  getUsersListings($_SESSION["user"]);
 $counter =  1;
 ?>
-
-<script>
-window.onload = function(){
-}
-
-function retrieveListingID(objbutton)
-{
-    document.cookie="ListingID=" + objbutton.getAttribute('value') + "";
-    var x = getCookie("ListingID");
-    return false;
-}
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0; i<ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1);
-        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
-    }
-    return "";
-}
-</script>
     <!--Header-->
     <header>       
          <!-- Fixed navbar -->
@@ -50,9 +27,9 @@ function getCookie(cname) {
               <ul class="nav navbar-nav">
                             <li><a href="index.php">Home</a></li>
                             <li><a href="about-us.php">About Us</a></li>
-                            
-                            <li class="active"><a href="portfolio.php">Browse Homes</a></li>
-                            
+                            <li><a href="services.php">Services</a></li>
+                            <li><a href="portfolio.php">Browse Homes</a></li>
+                            <li><a href="pricing.php">Pricing</a></li>
                             <li><a href="contact-us.php">Request a listing</a></li>
                             <?php if(!isset($_SESSION['user'])) : ?>  
                             <li><a href="login.php">Login</a></li>
@@ -75,12 +52,12 @@ function getCookie(cname) {
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1>Browse Homes</h1>
+                    <h1>My Listings</h1>
                 </div>
                 <div class="col-md-6">
                     <ul class="breadcrumb pull-right">
                         <li><a href="index.php">Home</a></li> 
-                        <li class="active">Browse Homes</li>
+                        <li class="active">My Listings</li>
                     </ul>
                 </div>
             </div>
@@ -90,18 +67,14 @@ function getCookie(cname) {
 
     <section id="portfolio" class="container main">  
 <div class="head-title">
-            <h2>Browse Homes</h2>
-            <p class="lead">Available Houses</p>
+            <h2>My Listings</h2>
+            <p class="lead">Currently Listed Houses</p>
         </div>  
         <ul class="gallery">
             <!--Item 1-->
            <?php
-            foreach($allListings as $listing)
+            foreach($allListings["Items"] as $listing)
             {
-                if($listing["Private"]["BOOL"])
-                {
-                    continue;
-                }
             ?>
             <li>
                 <div class="preview">
@@ -119,6 +92,7 @@ function getCookie(cname) {
                   <?php
                     echo '<div class="desc">';
                     echo "<h5>".$listing["Address"]["S"]."</h5>";
+                    echo '<td><a type="button" href="./editListing.php?id='.$listing["ListingID"]["S"].'" class="btn btn-block btn-warning">Edit</a></td>';
                     echo "</div>";
                     echo '<div class="modal fade modal-'.$counter.'" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">'
                   ?>                
@@ -129,8 +103,7 @@ function getCookie(cname) {
                         echo '<div class="desc">';
                         echo "<h5>".$listing["Address"]["S"]."</h5>";
                         echo "<small>".$listing["City"]["S"]."</small>";
-                        echo '<h6><a class="btn btn-transparent" id="button'.$counter.'" value="'.$listing["ListingID"]["S"].'" onclick="retrieveListingID(this)" <a href="http://ec2-52-35-129-61.us-west-2.compute.amazonaws.com/VizerCompanyWebsite/VirtualRealityViewer.html">Virtual Reality</a>
-                        <a href="http://ec2-52-35-129-61.us-west-2.compute.amazonaws.com/VizerVR/cardboard2/prototype1.html" class="btn btn-transparent">Desktop Touring</a></h6>';
+                        echo '<h6><a href="http://ec2-52-35-129-61.us-west-2.compute.amazonaws.com/VizerVR/cardboard2/prototype1_VR.html" class="btn btn-transparent">Virtual Reality</a>         <a href="http://ec2-52-35-129-61.us-west-2.compute.amazonaws.com/VizerVR/cardboard2/prototype1.html" class="btn btn-transparent">Desktop Touring</a></h6>';
                         echo "</div>";
                       ?>
                     </div>
@@ -147,7 +120,6 @@ function getCookie(cname) {
         </ul>
         
     </section>
-
 
 <?php
 

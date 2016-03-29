@@ -32,9 +32,12 @@ include_once($projectRoot."/includes/functions.php");
                             <?php if(!isset($_SESSION['user'])) : ?>  
                             <li><a href="login.php">Login</a></li>
                             <?php endif; ?>
-                            <?php if(isset($_SESSION['user'])) : ?>  
-                            <li><a href="logout.php">Logout
-                                <?php print_r(getUser($_SESSION['user'])['Items'][0]['Name']['S']); ?></a></li>
+                            <?php if(isset($_SESSION['user'])) : ?> 
+                                <?php if(!empty(getUser($_SESSION['user'])['Items'])) : ?>
+                                <li><a href="userListings.php">My Listings</a></li> 
+                                <li><a href="logout.php">Logout
+                                    <?php print_r(getUser($_SESSION['user'])['Items'][0]['Name']['S']); ?></a></li>
+                                <?php else: session_unset(); header('Location: ./'); endif; ?>    
                             <?php endif; ?>                     
 			  </ul>
 			</div><!--/.nav-collapse -->
