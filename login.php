@@ -25,9 +25,7 @@ include_once($projectRoot."/includes/functions.php");
               <ul class="nav navbar-nav">
                             <li><a href="index.php">Home</a></li>
                             <li><a href="about-us.php">About Us</a></li>
-                            <li><a href="services.php">Services</a></li>
                             <li><a href="portfolio.php">Browse Homes</a></li>
-                            <li><a href="pricing.php">Pricing</a></li>
                             <li><a href="contact-us.php">Request a listing</a></li>
                             <li class="active"><a href="login.php">Login</a></li>
                             <?php if(isset($_SESSION['user'])) : ?>  
@@ -74,11 +72,7 @@ include_once($projectRoot."/includes/functions.php");
                     </li>
                     <li>
                         <i class="fa fa-envelope"></i>
-                        contact@IzerLabs.com
-                    </li>
-                    <li>
-                        <i class="fa fa-globe"></i>
-                        www.izerlabs.com
+                        izerlabs@gmail.com
                     </li>
                     <li>
                         <i class="fa fa-phone"></i>

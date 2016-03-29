@@ -26,9 +26,7 @@
                     <ul class="arrow">
 					    <li><i class="fa fa-angle-double-right"></i> <a href="index.php">Home</a></li>
                         <li><i class="fa fa-angle-double-right"></i> <a href="about-us.php">About Us</a></li> 
-                        <li><i class="fa fa-angle-double-right"></i> <a href="services.php">Services</a></li>
                         <li><i class="fa fa-angle-double-right"></i> <a href="portfolio.php">Browse Homes</a></li> 
-                        <li><i class="fa fa-angle-double-right"></i> <a href="pricing.php">Pricing</a></li>
                         <li><i class="fa fa-angle-double-right"></i> <a href="contact-us.php">Request Listings</a></li>
                         </ul>
                 </div>  

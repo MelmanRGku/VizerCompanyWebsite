@@ -83,11 +83,7 @@ if(isset($_SESSION['user'])) {
                     </li>
                     <li>
                         <i class="fa fa-envelope"></i>
-                        contact@IzerLabs.com
-                    </li>
-                    <li>
-                        <i class="fa fa-globe"></i>
-                        www.izerlabs.com
+                        izerlabs@gmail.com
                     </li>
                     <li>
                         <i class="fa fa-phone"></i>
